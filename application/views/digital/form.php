@@ -184,6 +184,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <textarea id="aboutus" class="form-control" id="about" name="about"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div>
                                     <button type="submit" class="btn btn-primary w-md">Next</button>
                                 </div>
@@ -292,7 +299,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#editor').summernote({
+        $('#aboutus').summernote({
             height: 250,
             toolbar: [
                 ['style', ['bold', 'italic', 'underline', 'clear']],
