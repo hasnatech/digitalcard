@@ -9,12 +9,12 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="<?php echo base_url('assets/fonts/font_awesome/css/all.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/fonts/fonts/font.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css') ?>">
+    <!-- <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css') ?>"> -->
     <link rel="stylesheet" href="<?php echo base_url('css/style.css') ?>">
 
     <!--// Required Javascript Files //-->

@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/fonts/font_awesome/css/all.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/fonts/fonts/font.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css') ?>">
+    <!-- <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css') ?>"> -->
     <link rel="stylesheet" href="<?php echo base_url('css/style.css') ?>">
 
     <!--// Required Javascript Files //-->
@@ -48,7 +48,7 @@
             <div class="d-flex">
                 <!-- LOGO -->
                 <div class="navbar-brand-box">
-                    <a href="<?php echo base_url('dashboard'); ?>" class="logo logo-dark">
+                    <a href="<?php echo base_url('digitalcard'); ?>" class="logo logo-dark">
                         <!-- <span class="logo-sm">
                             <img src="assets/images/logo.svg" alt="" height="22">
                         </span>
