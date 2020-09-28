@@ -1,0 +1,156 @@
+#page-topbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1002;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+  background-color: #2a3042;
+}
+
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+  display: block;
+}
+
+*,
+::after,
+::before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+user agent stylesheet header {
+  display: block;
+}
+
+body {
+  margin: 0;
+  font-family: Poppins, sans-serif;
+  font-size: .8125rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  text-align: left;
+  background-color: #f8f8fb;
+}
+
+:root {
+  --blue: #556ee6;
+  --indigo: #564ab1;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #f46a6a;
+  --orange: #f1734f;
+  --yellow: #f1b44c;
+  --green: #34c38f;
+  --teal: #050505;
+  --cyan: #50a5f1;
+  --white: #fff;
+  --gray: #74788d;
+  --gray-dark: #343a40;
+  --primary: #556ee6;
+  --secondary: #74788d;
+  --success: #34c38f;
+  --info: #50a5f1;
+  --warning: #f1b44c;
+  --danger: #f46a6a;
+  --light: #eff2f7;
+  --dark: #343a40;
+  --pink: #e83e8c;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: "Poppins", sans-serif;
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+*,
+::after,
+::before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*,
+::after,
+::before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.navbar-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 auto;
+  height: 70px;
+  padding: 0 calc(24px / 2) 0 0;
+  color: #e9ecef;
+}
+
+.navbar-header a,
+.navbar-header .btn {
+  color: #e9ecef;
+}
+
+.logo {
+  font-size: 1rem;
+}
+
+.header-profile-user {
+  height: 36px;
+  width: 36px;
+  background-color: #f6f6f6;
+  padding: 3px;
+}
+
+@media (min-width: 1200px) {
+  .navbar-header,
+  .main-footer .container1 {
+    max-width: 85%;
+    margin: 0 auto;
+  }
+}
+
+.container-custom {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.wrapper {
+  margin-top: 80px;
+  min-height: calc(100vh - 147px);
+}
+
+.main-footer {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #e9ecef;
+}
+/*# sourceMappingURL=style.css.map */
