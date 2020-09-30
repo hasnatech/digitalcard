@@ -12607,4 +12607,9 @@ button {
 	background: #fff
 }
 
+.border-top {
+	border-top: 20px;
+	border-color: grey;
+}
+
 /*# sourceMappingURL=bootstrap.min.css.map */
