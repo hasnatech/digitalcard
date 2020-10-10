@@ -10,7 +10,7 @@
                                     <div class="col-7">
                                         <div class="text-primary p-4">
                                             <h5 class="text-primary">Welcome Back !</h5>
-                                            <p>Sign in to continue to Skote.</p>
+                                            <p>Sign in to continue.</p>
                                         </div>
                                     </div>
                                     <div class="col-5 align-self-end">
@@ -29,16 +29,16 @@
                                     </a>
                                 </div>
                                 <div class="p-2">
-                                    <form class="form-horizontal" action="<?php echo base_url('digitalcard') ?>">
+                                    <form id="loginform" class="form-horizontal" action="<?php echo base_url('digitalcard') ?>">
 
                                         <div class="form-group">
-                                            <label for="username">Username</label>
-                                            <input type="text" class="form-control" id="username" placeholder="Enter username">
+                                            <label for="mobile">Mobile</label>
+                                            <input type="tel" class="form-control" name="mobile" placeholder="Enter Mobile Number">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="userpassword">Password</label>
-                                            <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" name="password" placeholder="Enter password">
                                         </div>
 
                                         <div class="custom-control custom-checkbox">
@@ -51,7 +51,7 @@
                                         </div>
 
                                         <div class="mt-4 text-center">
-                                            <a href="<?php echo base_url('a/forgot')?>" class="text-muted"><i class="mdi mdi-lock mr-1"></i> Forgot your password?</a>
+                                            <a href="<?php echo base_url('a/forget')?>" class="text-muted"><i class="mdi mdi-lock mr-1"></i> Forgot your password?</a>
                                         </div>
                                     </form>
                                 </div>
@@ -72,3 +72,42 @@
         </div>
     </div>
 </section>
+
+<script>
+    $().ready(function() {
+
+        $("#loginform").validate({
+            // Specify validation rules
+            rules: {
+                // The key name on the left side is the name attribute
+                // of an input field. Validation rules are defined
+                // on the right side
+                mobile: {
+                    required: true,
+                    minlength: 10
+                    // Specify that email should be validated
+                    // by the built-in "email" rule
+                    // email: true
+                },
+                password: {
+                    required: true
+                }
+            },
+            // Specify validation error messages
+            messages: {
+                password: {
+                    required: "Please provide a password"
+                },
+                mobile: {
+                    required: "Please enter a valid Mobile Number",
+                    minlength: "Please enter a valid Mobile Number",
+                }
+            },
+            // Make sure the form is submitted to the destination defined
+            // in the "action" attribute of the form when valid
+            submitHandler: function(form) {
+                form.submit();
+            }
+        })
+    });
+</script>
