@@ -36,18 +36,18 @@
 					</ul>
 					<!-- Tab panes -->
 					<div class="tab-content p-3 text-muted">
-						<div class="tab-pane active" id="company" role="tabpanel">
-							<form>
+						<div class="tab-pane active" id="company-panel" role="tabpanel">
+							<form name='company_save' action="<?php echo base_url('ws/company_save');?>" method="POST">
 								<div class="row">
 									<div class="col-lg-4">
-										<div class="form-group"><label for="name">Name<span
-													class="red">*</span></label><input type="text" class="form-control"
-												id="name" name="name"></div>
+										<div class="form-group"><label for="name">Name<span class="red">*</span></label>
+											<input type="text" class="form-control" id="name" name="name"></div>
 									</div>
 									<div class="col-lg-4">
-										<div class="form-group"><label for="companyName">Company Name<span
-													class="red">*</span></label><input type="text" class="form-control"
-												id="companyName" name="companyName"></div>
+										<div class="form-group"><label for="company">Company Name<span
+													class="red">*</span></label>
+											<input type="text" class="form-control" id="company" name="company">
+										</div>
 									</div>
 									<div class="col-lg-4">
 										<div class="form-group"><label for="url">URL<span class="red">*</span></label>
@@ -68,23 +68,23 @@
 												id="email" name="email"></div>
 									</div>
 									<div class="col-lg-4">
-										<div class="form-group"><label for="contactNumber">Contact Number<span
+										<div class="form-group"><label for="contact_number">Contact Number<span
 													class="red">*</span></label><input type="tel" class="form-control"
-												id="contactNumber" name="contactNumber">
+												id="contact_number" name="contact_number">
 										</div>
 									</div>
 									<div class="col-lg-4">
-										<div class="form-group"><label for="whatsappNumber">Whatsapp Number<span
+										<div class="form-group"><label for="whatsapp_number">Whatsapp Number<span
 													class="red">*</span></label><input type="tel" class="form-control"
-												id="whatsappNumber" name="whatsappNumber">
+												id="whatsapp_number" name="whatsapp_number">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-lg-4">
-										<div class="form-group"><label for="landlineNumber">Landline
-												Number</label><input type="tel" class="form-control" id="landlineNumber"
-												name="landlineNumber"></div>
+										<div class="form-group"><label for="landline_number">Landline
+												Number</label><input type="tel" class="form-control" id="landline_number"
+												name="landline_number"></div>
 									</div>
 									<div class="col-lg-4">
 										<div class="form-group"><label for="website">Website Url</label><input
@@ -92,9 +92,9 @@
 										</div>
 									</div>
 									<div class="col-lg-4">
-										<div class="form-group"><label for="googleMap">Google Map
-												link</label><input type="url" class="form-control" id="googleMap"
-												name="googleMap"></div>
+										<div class="form-group"><label for="g_map">Google Map
+												link</label><input type="url" class="form-control" id="g_map"
+												name="g_map"></div>
 									</div>
 								</div>
 								<div class="row">
@@ -134,7 +134,9 @@
 											</select></div>
 									</div>
 								</div>
-								<div><button type="submit" class="btn btn-primary w-md">Next</button></div>
+								<div>
+								<input type="submit" name='company_save' class="btn btn-primary w-md" value="Next">
+								</div>
 							</form>
 						</div>
 						<div class="tab-pane" id="about" role="tabpanel">
@@ -156,7 +158,9 @@
 												name="about"></textarea></div>
 									</div>
 								</div>
-								<div><button type="submit" class="btn btn-primary w-md">Next</button></div>
+								<div>
+								<input type="submit" name='' class="btn btn-primary w-md" value="Next"></button>
+								</div>
 							</form>
 						</div>
 						<div class="tab-pane" id="social" role="tabpanel">
@@ -458,14 +462,15 @@
 									</div>
 								</div>
 							</div>
-								<div class="row mt-5">
-									<div class="col-lg-3">
-										<div class="card card_border" style="width: 15rem;">
-										<img src="<?php echo base_url('assets/images/users/2.png'); ?>" class="card-img-top img-thumbnail" alt="...">
-											<a href="#" class=" btn btn-danger btn_width">Delete</a>
-										</div>
+							<div class="row mt-5">
+								<div class="col-lg-3">
+									<div class="card card_border" style="width: 15rem;">
+										<img src="<?php echo base_url('assets/images/users/2.png'); ?>"
+											class="card-img-top img-thumbnail" alt="...">
+										<a href="#" class=" btn btn-danger btn_width">Delete</a>
 									</div>
 								</div>
+							</div>
 							<button type="submit" class="btn btn-primary w-md mt-5">Next</button>
 						</div>
 						<div class="tab-pane" id="settings" role="tabpanel">
@@ -475,24 +480,24 @@
 				</div>
 			</div>
 		</div>
-</div>
-		<script>
-			$(document).ready(function () {
-					$('#aboutus').summernote({
-							height: 250,
-							toolbar: [
-								['style', ['bold', 'italic', 'underline', 'clear']],
-								['font', ['superscript', 'subscript']],
-								['fontsize', ['fontsize']],
-								['color', ['color']],
-								['para', ['ul', 'ol', 'paragraph']],
-								['height', ['height']]
-							]
-						}
+	</div>
+	<script>
+		$(document).ready(function () {
+				$('#aboutus').summernote({
+						height: 250,
+						toolbar: [
+							['style', ['bold', 'italic', 'underline', 'clear']],
+							['font', ['superscript', 'subscript']],
+							['fontsize', ['fontsize']],
+							['color', ['color']],
+							['para', ['ul', 'ol', 'paragraph']],
+							['height', ['height']]
+						]
+					}
 
-					);
-					var youtube_link =
-						` <div class="col-lg-12"> 
+				);
+				var youtube_link =
+					` <div class="col-lg-12"> 
 					<div class="videolink_item">
 					 <div class="row"> 
 					 <div class="col-lg-8"> 
@@ -500,41 +505,41 @@
 					<label for="youtube1">Youtube Video 1</label> <div class="input-group"> <input type="text"class="form-control"id="youtube1"name="youtube1"> 
 					<span class="input-group-btn input-group-append"> <button class="btn btn-danger"type="button">x</button> </span> </div> </div> </div> </div> </div> </div> `;
 
-					$("#plus_youtube").click(function (e) {
-							e.preventDefault();
-							$(".videolink").append(youtube_link);
-							resetYoutubeLink();
+				$("#plus_youtube").click(function (e) {
+						e.preventDefault();
+						$(".videolink").append(youtube_link);
+						resetYoutubeLink();
+					}
+
+				)
+
+				function resetYoutubeLink() {
+					var i = 0;
+
+					$(".videolink_item").each(function () {
+							i++;
+							$(this).find('label').text("Youtube Video " + i);
+							$(this).find('label').attr('for', 'youtube' + i);
+							$(this).find('input').attr('id', 'youtube' + i);
+							$(this).find('input').attr('name', 'youtube' + i);
+
+							$(this).find('button').click(function (e) {
+
+									e.preventDefault();
+									$(this).parent().parent().parent().parent().parent().parent().parent()
+										.remove();
+									resetYoutubeLink();
+								}
+
+							)
 						}
 
 					)
-
-					function resetYoutubeLink() {
-						var i = 0;
-
-						$(".videolink_item").each(function () {
-								i++;
-								$(this).find('label').text("Youtube Video " + i);
-								$(this).find('label').attr('for', 'youtube' + i);
-								$(this).find('input').attr('id', 'youtube' + i);
-								$(this).find('input').attr('name', 'youtube' + i);
-
-								$(this).find('button').click(function (e) {
-
-										e.preventDefault();
-										$(this).parent().parent().parent().parent().parent().parent().parent()
-											.remove();
-										resetYoutubeLink();
-									}
-
-								)
-							}
-
-						)
-					}
-
-					$("#plus_youtube").click();
 				}
 
-			);
+				$("#plus_youtube").click();
+			}
 
-		</script>
+		);
+
+	</script>

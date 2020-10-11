@@ -29,7 +29,7 @@
                                     </a>
                                 </div>
                                 <div class="p-2">
-                                    <form id="loginform" class="form-horizontal" action="<?php echo base_url('digitalcard') ?>">
+                                    <form id="loginform" class="form-horizontal" action="<?php echo base_url('ws') ?>">
 
                                         <div class="form-group">
                                             <label for="mobile">Mobile</label>
