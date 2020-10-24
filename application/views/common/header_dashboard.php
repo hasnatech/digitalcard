@@ -21,7 +21,9 @@
     <script src="<?php echo base_url('assets/js/plugins.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/custom.select.plugin.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery.conformy.plugin.js') ?>"></script>
+    <Script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="<?php echo base_url('assets/js/main.js') ?>"></script>
+
     <!--// Get Full Year Copyright //-->
 
     <!-- include summernote css/js -->
@@ -55,7 +57,7 @@
                         <span class="logo-lg">
                             <img src="assets/images/logo-dark.png" alt="" height="17">
                         </span> -->
-                        Digital Card
+                        Website Builder
                     </a>
                 </div>
                 <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light" data-toggle="collapse" data-target="#topnav-menu-content">

@@ -209,4 +209,10 @@ label.error {
   font-size: 80%;
   color: #f46a6a;
 }
+
+.error_msg {
+  margin: 10px;
+  color: #dc3545;
+  font-style: italic;
+}
 /*# sourceMappingURL=style.css.map */
