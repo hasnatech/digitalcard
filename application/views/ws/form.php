@@ -1,4 +1,4 @@
-<div class="container-custom">
+<div class="container-custom" id="headline" ng-app="myApp" ng-controller="myCtrl">
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="card">
@@ -212,7 +212,7 @@
 						</div>
 						<div class="tab-pane" id="services" role="tabpanel">
 							<form name='product_form' action="<?php echo base_url('ws/product'); ?>" method="POST" enctype="multipart/form-data">
-								<input type="hidden" name="id" class="business_id">
+								<input type="hidden" id="product_id" name="product_id">
 								<div class="row">
 									<div class="col-lg-4">
 										<div class="form-group"><label for="product">Product Name</label>
@@ -231,10 +231,10 @@
 								<div class="row">
 									<div class="col-lg-4">
 										<label for="service_image">Select Product/Service Image</label>
-										<input type="file" class="custom-file-input1" id="service_image" name="service_image" aria-describedby="service_image">
+
 										<div class="input-group">
 											<div class="custom-file">
-												
+												<input type="file" class="custom-file-input" id="service_image" name="service_image" aria-describedby="service_image">
 												<label class="custom-file-label" for="service_image">Choose
 													file</label>
 											</div>
@@ -253,54 +253,56 @@
 								</div>
 							</div>
 							<div id="product_list" class="row">
-								<div class="col-lg-4">
-									<div class="card card_border" style="width: 18rem;"><img src="<?php echo base_url('assets/images/users/2.png'); ?>" class="card-img-top" alt="...">
+								<div class="col-lg-4" ng-repeat="product in products" id="prod_{{product.id}}">
+									<div class="card card_border" style="width: 18rem;">
+										<img src="<?php echo base_url('assets/images/users/2.png'); ?>" class="card-img-top" alt="...">
 										<div class="card-body">
-											<h5 class="card-title">Product Name</h5>
-											<div class="underline">MRP: 1000</div>
-											<h5 class="card-text">Price: 800</h5>
+											<h5 class="card-title">{{product.product}}</h5>
+											<div class="underline">MRP: {{product.mrp}}</div>
+											<h5 class="card-text">Price: {{product.our_price}}</h5>
 											<div><a href="#" class="btn btn-primary">Edit</a><a href="#" class=" btn btn-danger ml-3">Delete</a></div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<button type="submit" class="btn btn-primary w-md">Next</button>
+							<button id="product_next" type="submit" class="btn btn-primary w-md">Next</button>
 
 						</div>
 						<div class="tab-pane" id="bank" role="tabpanel">
-							<div class="card card_border">
-								<h3 class="card-header account_border">Account Details</h3>
-								<div class="card-body">
-									<form>
+							<form name='bank_form' action="<?php echo base_url('ws/bank'); ?>" method="POST" enctype="multipart/form-data">
+								<input type="hidden" name="id" class="business_id">
+								<div class="card card_border">
+									<h3 class="card-header account_border">Account Details</h3>
+									<div class="card-body">
 										<div class="row">
 											<div class="col-lg-6">
 												<div class="form-group">
-													<label for="bank">Bank Name</label>
-													<input type="text" class="form-control" id="bank" name="bank" placeholder="Enter Your Bank Name">
+													<label for="bankname">Bank Name</label>
+													<input type="text" class="form-control" id="bankname" name="bankname" placeholder="Enter Your Bank Name">
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="form-group">
-													<label for="account">Account No</label>
-													<input type="text" class="form-control" id="account" name="account" placeholder="Enter Your Account Number">
+													<label for="account_no">Account No</label>
+													<input type="text" class="form-control" id="account_no" name="account_no" placeholder="Enter Your Account Number">
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="form-group">
-													<label for="branch">Branch Name</label>
-													<input type="text" class="form-control" id="branch" name="branch" placeholder="Enter Your Branch Name">
+													<label for="branchname">branchname Name</label>
+													<input type="text" class="form-control" id="branchname" name="branchname" placeholder="Enter Your Branch Name">
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="form-group">
-													<label for="ifsc">IFSC code </label>
-													<input type="text" class="form-control" id="ifsc" name="ifsc" placeholder="Enter Your IFSC code">
+													<label for="ifsc_code">IFSC code </label>
+													<input type="text" class="form-control" id="ifsc_code" name="ifsc_code" placeholder="Enter Your IFSC code">
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="form-group">
-													<label for="account_holder">AC Holder Name </label>
-													<input type="text" class="form-control" id="account_holder" name="account_holder" placeholder="Enter Your Account Holder Name">
+													<label for="account_holder_name">AC Holder Name </label>
+													<input type="text" class="form-control" id="account_holder_name" name="account_holder_name" placeholder="Enter Your Account Holder Name">
 												</div>
 											</div>
 											<div class="col-lg-6">
@@ -310,99 +312,95 @@
 												</div>
 											</div>
 										</div>
-									</form>
-									<h3 class="card-header account_border">Account Details (International Usage)</h3>
-									<form>
+										<h3 class="card-header account_border">Account Details (International Usage)</h3>
 										<div class="row mt-4">
 											<div class="col-lg-6">
 												<div class="form-group">
-													<label for="iban_no">IBAN Number</label>
-													<input type="text" class="form-control" id="iban_no" name="iban_no" placeholder="Enter Your IBAN Number">
+													<label for="iban">IBAN Number</label>
+													<input type="text" class="form-control" id="iban" name="iban" placeholder="Enter Your IBAN Number">
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="form-group">
-													<label for="swift_code">SWIFT Code</label>
-													<input type="text" class="form-control" id="swift_code" name="swift_code" placeholder="Enter Your SWIFT Code ">
+													<label for="swift">SWIFT Code</label>
+													<input type="text" class="form-control" id="swift" name="swift" placeholder="Enter Your SWIFT Code ">
 												</div>
 											</div>
 										</div>
-										<form>
-											<h3 class="card-header account_border">Online Transfer</h3>
-											<form>
-												<div class="row mt-4">
-													<div class="col-lg-6">
-														<div class="form-group">
-															<label for="google_pay">GooglePay</label>
-															<input type="text" class="form-control" id="google_pay" name="google_pay" placeholder="Enter Your GooglePay Number">
-														</div>
-													</div>
-													<div class="col-lg-6">
-														<div class="form-group">
-															<label for="paytm">Paytm</label>
-															<input type="text" class="form-control" id="paytm" name="paytm" placeholder="Enter Your Paytm Number">
-														</div>
-													</div>
-													<div class="col-lg-6">
-														<label for="google_payimage">Upload GooglePay QR Images
-															(Optional)</label>
-														<div class="input-group">
-															<div class="custom-file">
-																<input type="file" class="custom-file-input" id="google_payimage" aria-describedby="google_payimage">
-																<label class="custom-file-label" for="google_payimage">Choose
-																	file</label>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-6">
-														<label for="paytm_image">Upload Paytm QR Images
-															(Optional)</label>
-														<div class="input-group">
-															<div class="custom-file">
-																<input type="file" class="custom-file-input" id="paytm_image" aria-describedby="paytm_image">
-																<label class="custom-file-label" for="paytm_image">Choose
-																	file</label>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-6">
-														<div class="form-group mt-3">
-															<label for="phonepe">Phonepe</label>
-															<input type="text" class="form-control" id="phonepe" name="phonepe" placeholder="Enter Your Phonepe Number">
-														</div>
-													</div>
-													<div class="col-lg-6">
-														<div class="form-group mt-3">
-															<label for="upi_id">UPI ID</label>
-															<input type="text" class="form-control" id="upi_id" name="upi_id" placeholder="Enter Your UPI ID Number">
-														</div>
-													</div>
-													<div class="col-lg-6">
-														<label for="phonepe_image">Upload Phonepe QR Images
-															(Optional)</label>
-														<div class="input-group">
-															<div class="custom-file">
-																<input type="file" class="custom-file-input" id="phonepe_image" aria-describedby="phonepe_image">
-																<label class="custom-file-label" for="phonepe_image">Choose
-																	file</label>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-6">
-														<label for="gallery_image">Upload UPI Images (Optional)</label>
-														<div class="input-group">
-															<div class="custom-file">
-																<input type="file" class="custom-file-input" id="upi_image" aria-describedby="upi_image">
-																<label class="custom-file-label" for="upi_image">Choose
-																	file</label>
-															</div>
-														</div>
+										<h3 class="card-header account_border">Online Transfer</h3>
+										<div class="row mt-4">
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="googlepay">GooglePay</label>
+													<input type="text" class="form-control" id="googlepay" name="googlepay" placeholder="Enter Your GooglePay Number">
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label for="paytm">Paytm</label>
+													<input type="text" class="form-control" id="paytm" name="paytm" placeholder="Enter Your Paytm Number">
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<label for="googlepay_qr">Upload GooglePay QR Images
+													(Optional)</label>
+												<div class="input-group">
+													<div class="custom-file">
+														<input type="file" class="custom-file-input" id="googlepay_qr"  name="googlepay_qr" aria-describedby="google_payimage">
+														<label class="custom-file-label" for="googlepay_qr">Choose
+															file</label>
 													</div>
 												</div>
-												<form>
+											</div>
+											<div class="col-lg-6">
+												<label for="paytm_qr">Upload Paytm QR Images
+													(Optional)</label>
+												<div class="input-group">
+													<div class="custom-file">
+														<input type="file" class="custom-file-input" id="paytm_qr" name="paytm_qr" aria-describedby="paytm_image">
+														<label class="custom-file-label" for="paytm_qr">Choose
+															file</label>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group mt-3">
+													<label for="phonepe">Phonepe</label>
+													<input type="text" class="form-control" id="phonepe" name="phonepe" placeholder="Enter Your Phonepe Number">
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group mt-3">
+													<label for="upiid">UPI ID</label>
+													<input type="text" class="form-control" id="upiid" name="upiid" placeholder="Enter Your UPI ID Number">
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<label for="phonepe_qr">Upload Phonepe QR Images
+													(Optional)</label>
+												<div class="input-group">
+													<div class="custom-file">
+														<input type="file" class="custom-file-input" id="phonepe_qr" name="phonepe_qr" aria-describedby="phonepe_image">
+														<label class="custom-file-label" for="phonepe_qr">Choose
+															file</label>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<label for="upiid_qr">Upload UPI Images (Optional)</label>
+												<div class="input-group">
+													<div class="custom-file">
+														<input type="file" class="custom-file-input" id="upiid_qr" name="upiid_qr" aria-describedby="upi_image">
+														<label class="custom-file-label" for="upi_image">Choose
+															file</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
-							</div>
-							<button type="submit" class="btn btn-primary w-md">Next</button>
+								<button type="submit" class="btn btn-primary w-md">Next</button>
+							</form>
 						</div>
 
 						<div class="tab-pane" id="gallery" role="tabpanel">

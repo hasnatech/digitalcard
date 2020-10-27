@@ -1,3 +1,15 @@
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function ($scope) {
+	$scope.products = [{
+		id: "5",
+		business_id: "1",
+		image: "last_screen3.png",
+		mrp: "500",
+		our_price: "450",
+		product: "iPhone"
+	}];
+});
+
 $(document).ready(function () {
 	var max = 500;
 	$('#aboutus').summernote({
@@ -55,8 +67,9 @@ $(document).ready(function () {
                 <span class="input-group-btn input-group-append"> <button class="btn btn-danger"type="button">x</button> </span> </div> </div> </div> </div> </div> </div> `;
 
 	var product =
-		` <div class="col-lg-4">
-		<div class="card card_border" style="width: 18rem;"><img src="{{image}}" class="card-img-top" alt="...">
+		` <div id="{{id}}" class="col-lg-4">
+		<div class="card card_border" style="width: 18rem;">
+			<img src="{{image}}" class="card-img-top" alt="...">
 			<div class="card-body">
 				<h5 class="card-title">{{product}}</h5>
 				<div class="underline">MRP: {{mrp}}</div>
@@ -68,12 +81,10 @@ $(document).ready(function () {
 
 
 	$("#plus_youtube").click(function (e) {
-			e.preventDefault();
-			$(".videolink").append(youtube_link);
-			resetYoutubeLink();
-		}
-
-	)
+		e.preventDefault();
+		$(".videolink").append(youtube_link);
+		resetYoutubeLink();
+	})
 
 	function resetYoutubeLink() {
 		var i = 0;
@@ -136,8 +147,9 @@ $(document).ready(function () {
 				var result = JSON.parse(d);
 				if (result.status === 'success') {
 					//goto(1);
-					goto(3);
+					goto(4);
 					business_id = result.data.id;
+					console.log(business_id);
 					$(".business_id").each(function (index) {
 						$(this).val(result.data.id);
 					})
@@ -211,32 +223,33 @@ $(document).ready(function () {
 		var fileToUpload = inputFile[0].files[0];
 		var other_data = $(this).serializeArray();
 		var formdata = new FormData();
+		//$("#business_id").val(business_id);
 		formdata.append('id', business_id);
 		formdata.append('image', fileToUpload);
+		console.log(other_data)
 		other_data.forEach(element => {
-			formdata.append(element.name, element.value);
-			product = product.replace('{{' + element.name + '}}', element.value);
-			//console.log('{{'+element.name+'}}', element.value);
-			if (element.value == '') {
-				form_validation = false;
+			if (element.name != 'product_id' && element.value != '') {
+				formdata.append(element.name, element.value);
+
+				//product = product.replace('{{' + element.name + '}}', element.value);
+				console.log('{{' + element.name + '}}', element.value);
+				if (element.value == '') {
+					form_validation = false;
+				}
 			}
 		});
-		console.log(fileToUpload);
+		console.log(form_validation, fileToUpload);
 		if (form_validation == false || fileToUpload == undefined) {
 			return
 		}
 
-		product = product.replace('{{image}}', '/digitalcard/assets/images/image_loader.gif');
-
-		$("#product_list").append(product);
-
 		$("form[name='product_form'] input").val('');
-		setTimeout(function(){
+		setTimeout(function () {
 			$("label.error").remove();
 			$(".error").removeClass("error");
 			$(".valid").removeClass("valid");
 		}, 500);
-		
+
 		console.log(fileToUpload);
 		$.ajax({
 			type: "POST",
@@ -248,6 +261,39 @@ $(document).ready(function () {
 				var result = JSON.parse(d);
 				if (result.status === 'success') {
 					//goto(4);
+					console.log(result.data);
+					angular.element("#headline").scope().products.push(result.data);
+					angular.element("#headline").scope().$apply();
+
+				} else {
+					$(".error").html(result.error);
+					alert(result.error);
+				}
+			},
+			error: function (e) {
+				alert(e);
+			}
+		});
+
+	});
+
+	$("#product_next").click(function(){
+		goto(4);
+	});
+
+
+	$("form[name='bank_form']").submit(function (e) {
+		e.preventDefault();
+		var form = $(this);
+		var url = form.attr('action');
+		$.ajax({
+			type: "POST",
+			url: url,
+			data: form.serialize(), // serializes the form's elements.
+			success: function (d) {
+				var result = JSON.parse(d);
+				if (result.status === 'success') {
+					//goto(2);
 					console.log(result);
 					//business_id = result.data.id;
 				} else {
@@ -259,7 +305,6 @@ $(document).ready(function () {
 				alert(e);
 			}
 		});
-
 	});
 
 

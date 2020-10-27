@@ -12,12 +12,14 @@ class WS extends Admin_Controller
 
     public function index()
     {
+  
         $this->render('ws/index', $this->data, $type = "dashboard");
     }
 
     public function new()
-    {
+    {      
         $this->render('ws/form', $this->data, $type = "dashboard");
+        
     }
 
     public function edit()
@@ -136,15 +138,12 @@ class WS extends Admin_Controller
             $data['image'] = $image_data['file_name'];
             $data['business_id'] = $id;
             unset($data['id']);
-            $this->Model_ws->insert_product($data);
+            $id = $this->Model_ws->insert_product($data); 
+            $result = $this->Model_ws->get_product($id);
 
             $this->data = array(
                 'status' => 'success',
-                'data' => array(
-                    'id' => $id,
-                    'data' => $data,
-                    'image_data' => $image_data
-                )
+                'data' => $result
             );
             
         }else{
@@ -154,6 +153,20 @@ class WS extends Admin_Controller
             );
         }
 
+        echo json_encode($this->data);
+    }
+
+    public function bank()
+    {
+        $id = $this->input->post('id');
+        $this->Model_ws->update($id, $this->input->post());
+        $this->data = array(
+            'status' => 'success',
+            'data' => array(
+                'id' => $id,
+                'data' =>$this->input->post()
+            )
+        );
         echo json_encode($this->data);
     }
 }

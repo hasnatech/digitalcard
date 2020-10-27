@@ -42,4 +42,10 @@ class Model_ws extends CI_Model
         $this->db->insert('product', $data); //add to database here
         return $this->db->insert_id();
     }
+
+    
+    public function get_product($id)
+    {
+        return $this->db->get_where('product', array('id' => $id))->result()[0];
+    }
 }
