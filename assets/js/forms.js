@@ -8,6 +8,12 @@ app.controller('myCtrl', function ($scope) {
 		our_price: "450",
 		product: "iPhone"
 	}];
+
+	$scope.gallery = [{
+		id: "5",
+		business_id: "1",
+		image: "last_screen3.png",
+	}];
 });
 
 $(document).ready(function () {
@@ -277,7 +283,7 @@ $(document).ready(function () {
 
 	});
 
-	$("#product_next").click(function(){
+	$("#product_next").click(function () {
 		goto(4);
 	});
 
@@ -286,14 +292,40 @@ $(document).ready(function () {
 		e.preventDefault();
 		var form = $(this);
 		var url = form.attr('action');
+
+		var other_data = form.serializeArray();
+		var formdata = new FormData();
+		formdata.append('id', business_id);
+
+		if (getImage('googlepay_qr') != undefined) {
+			formdata.append('googlepay_qr', getImage('googlepay_qr'));
+		}
+
+		if (getImage('paytm_qr') != undefined) {
+			formdata.append('paytm_qr', getImage('paytm_qr'));
+		}
+
+		if (getImage('phonepe_qr') != undefined) {
+			formdata.append('phonepe_qr', getImage('phonepe_qr'));
+		}
+
+		if (getImage('upiid_qr') != undefined) {
+			formdata.append('upiid_qr', getImage('upiid_qr'));
+		}
+
+		other_data.forEach(element => {
+			formdata.append(element.name, element.value);
+		});
 		$.ajax({
 			type: "POST",
 			url: url,
-			data: form.serialize(), // serializes the form's elements.
+			data: formdata,
+			processData: false,
+			contentType: false,
 			success: function (d) {
 				var result = JSON.parse(d);
 				if (result.status === 'success') {
-					//goto(2);
+					goto(5);
 					console.log(result);
 					//business_id = result.data.id;
 				} else {
@@ -307,7 +339,47 @@ $(document).ready(function () {
 		});
 	});
 
+	$("form[name='gallery_form']").submit(function (e) {
+		e.preventDefault();
+		var form = $(this);
+		var url = form.attr('action');
+		
+		var formdata = new FormData();
+		formdata.append('id', business_id);
+		var inputFile = $('input[name="gallery[]"]');
+		for (var i = 0; i < inputFile[0].files.length; ++i) {
+			formdata.append('gallery[]', inputFile[0].files[i]);
+		}
+		
+		$.ajax({
+			type: "POST",
+			url: url,
+			data: formdata,
+			processData: false,
+			contentType: false,
+			success: function (d) {
+				var result = JSON.parse(d);
+				if (result.status === 'success') {
+					//goto(5);
+					angular.element("#headline").scope().gallery = result.data;
+					angular.element("#headline").scope().$apply()
+					console.log(result.data);
+					//business_id = result.data.id;
+				} else {
+					$(".error").html(result.error);
+					alert(result.error);
+				}
+			},
+			error: function (e) {
+				alert(e);
+			}
+		});
+	});
 
+	function getImage(name) {
+		var image = $('input[name=' + name + ']');
+		return image[0].files[0];
+	}
 	// Validation
 	$("form[name='company_save']").validate({
 		rules: {

@@ -12,14 +12,13 @@ class WS extends Admin_Controller
 
     public function index()
     {
-  
+
         $this->render('ws/index', $this->data, $type = "dashboard");
     }
 
     public function new()
-    {      
+    {
         $this->render('ws/form', $this->data, $type = "dashboard");
-        
     }
 
     public function edit()
@@ -138,15 +137,14 @@ class WS extends Admin_Controller
             $data['image'] = $image_data['file_name'];
             $data['business_id'] = $id;
             unset($data['id']);
-            $id = $this->Model_ws->insert_product($data); 
+            $id = $this->Model_ws->insert_product($data);
             $result = $this->Model_ws->get_product($id);
 
             $this->data = array(
                 'status' => 'success',
                 'data' => $result
             );
-            
-        }else{
+        } else {
             $this->data = array(
                 'status' => 'failed',
                 'error' =>  $this->upload->display_errors()
@@ -158,15 +156,105 @@ class WS extends Admin_Controller
 
     public function bank()
     {
+
+        $config['upload_path'] = "./upload";
+        $config['allowed_types'] = 'gif|jpg|png';
+        // $config['overwrite'] = TRUE;
+        $config['max_size'] = "2048000";
+        $config['max_height'] = "1000";
+        $config['max_width'] = "2000";
+        $this->load->library('upload', $config);
+
+        $data = $this->input->post();
+        if ($this->upload->do_upload('googlepay_qr')) {
+            $googlepay_qr = $this->upload->data();
+            $data['googlepay_qr'] = $googlepay_qr['file_name'];
+            echo 'googlepay_qr';
+            print_r($data['googlepay_qr']);
+        }
+
+        if ($this->upload->do_upload('paytm_qr')) {
+
+            $paytm_qr = $this->upload->data();
+            $data['paytm_qr'] = $paytm_qr['file_name'];
+        }
+
+        if ($this->upload->do_upload('phonepe_qr')) {
+            $phonepe_qr = $this->upload->data();
+            $data['phonepe_qr'] = $phonepe_qr['file_name'];
+        }
+
+        if ($this->upload->do_upload('upiid_qr')) {
+            $upiid_qr = $this->upload->data();
+            $data['upiid_qr'] = $upiid_qr['file_name'];
+            //echo 'upiid_qr';
+            //print_r($data['upiid_qr']);
+        }
+
+        //print_r($_FILES);
         $id = $this->input->post('id');
-        $this->Model_ws->update($id, $this->input->post());
+        $this->Model_ws->update($id, $data);
         $this->data = array(
             'status' => 'success',
             'data' => array(
                 'id' => $id,
-                'data' =>$this->input->post()
+                'data' => $data
             )
         );
+        echo json_encode($this->data);
+    }
+
+
+    public function gallery()
+    {
+
+        $config['upload_path'] = "./upload";
+        $config['allowed_types'] = 'gif|jpg|png';
+        // $config['overwrite'] = TRUE;
+        $config['max_size'] = "2048000";
+        $config['max_height'] = "1000";
+        $config['max_width'] = "2000";
+        $this->load->library('upload', $config);
+
+        $data = $this->input->post();
+        $files = $_FILES;
+        $cpt = count($_FILES['gallery']['name']);
+        $result = array();
+        $error = "";
+        for ($i = 0; $i < $cpt; $i++) {
+            $_FILES['gallery']['name'] = $files['gallery']['name'][$i];
+            $_FILES['gallery']['type'] = $files['gallery']['type'][$i];
+            $_FILES['gallery']['tmp_name'] = $files['gallery']['tmp_name'][$i];
+            $_FILES['gallery']['error'] = $files['gallery']['error'][$i];
+            $_FILES['gallery']['size'] = $files['gallery']['size'][$i];
+            $this->upload->initialize($config);
+            if (!$this->upload->do_upload('gallery')) {
+                $error = $this->upload->display_errors();
+            } else {
+                $image = $this->upload->data();
+                $image_data = array(
+                    'business_id' => $data['id'],
+                    'image' => $image['file_name']
+                );
+                array_push($result, $this->Model_ws->insert_gallery($image_data));
+            }
+        }
+
+        $id = $this->input->post('id');
+        //$this->Model_ws->update($id, $data);
+
+        if ($error != "") {
+            $this->data = array(
+                'status' => 'error',
+                'error' => $error
+            );
+        } else {
+            $this->data = array(
+                'status' => 'success',
+                'data' =>  $result
+            );
+        }
+
         echo json_encode($this->data);
     }
 }

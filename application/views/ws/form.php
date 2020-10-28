@@ -346,7 +346,7 @@
 													(Optional)</label>
 												<div class="input-group">
 													<div class="custom-file">
-														<input type="file" class="custom-file-input" id="googlepay_qr"  name="googlepay_qr" aria-describedby="google_payimage">
+														<input type="file" class="custom-file-input" id="googlepay_qr" name="googlepay_qr" aria-describedby="google_payimage">
 														<label class="custom-file-label" for="googlepay_qr">Choose
 															file</label>
 													</div>
@@ -355,6 +355,7 @@
 											<div class="col-lg-6">
 												<label for="paytm_qr">Upload Paytm QR Images
 													(Optional)</label>
+
 												<div class="input-group">
 													<div class="custom-file">
 														<input type="file" class="custom-file-input" id="paytm_qr" name="paytm_qr" aria-describedby="paytm_image">
@@ -391,7 +392,7 @@
 												<div class="input-group">
 													<div class="custom-file">
 														<input type="file" class="custom-file-input" id="upiid_qr" name="upiid_qr" aria-describedby="upi_image">
-														<label class="custom-file-label" for="upi_image">Choose
+														<label class="custom-file-label" for="upiid_qr">Choose
 															file</label>
 													</div>
 												</div>
@@ -404,26 +405,32 @@
 						</div>
 
 						<div class="tab-pane" id="gallery" role="tabpanel">
-							<div class="row mt-3">
-								<div class="col-lg-6">
-									<label for="gallery_image">Choose Gallery images ( Upload Upto 10 Images)</label>
-									<div class="input-group">
-										<div class="custom-file">
-											<input type="file" class="custom-file-input" id="gallery_image" aria-describedby="gallery_image">
-											<label class="custom-file-label" for="gallery_image">Choose file</label>
+							<form name='gallery_form' action="<?php echo base_url('ws/gallery'); ?>" method="POST" enctype="multipart/form-data">
+								<div class="row mt-3">
+									<div class="col-lg-6">
+										<label for="gallery_image">Choose Gallery images ( Upload Upto 10 Images)</label>
+										<div class="input-group">
+											<div class="custom-file">
+												<input type="file" class="custom-file-input" id="gallery_image" name="gallery[]" accept="image/x-png,image/gif,image/jpeg" multiple aria-describedby="gallery_image">
+												<label class="custom-file-label" for="gallery_image">Choose file</label>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<button type="submit" class="btn btn-primary w-md mt-2">Next</button>
+							</form>
+
+							<div class="row mt-5">
+								<div class="col-md-3" ng-repeat="item in gallery">
+									<div class="card card_border" style="width: 100%;">
+										<img src="<?php echo base_url('upload/'); ?>{{item.image}}" class="card-img-top img-thumbnail" alt="...">
+										<div class="card-block">
+											<a href="#" class="btn btn-danger ">Delete</a>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="row mt-5">
-								<div class="col-lg-3">
-									<div class="card card_border" style="width: 15rem;">
-										<img src="<?php echo base_url('assets/images/users/2.png'); ?>" class="card-img-top img-thumbnail" alt="...">
-										<a href="#" class=" btn btn-danger btn_width">Delete</a>
-									</div>
-								</div>
-							</div>
-							<button type="submit" class="btn btn-primary w-md mt-5">Next</button>
 						</div>
 						<div class="tab-pane" id="settings" role="tabpanel">
 							<h1>Hello</h1>

@@ -48,4 +48,12 @@ class Model_ws extends CI_Model
     {
         return $this->db->get_where('product', array('id' => $id))->result()[0];
     }
+
+    
+    public function insert_gallery($data)
+    {
+        $this->db->insert('gallery', $data); //add to database here
+        $last_id =  $this->db->insert_id();
+        return $this->db->get_where('gallery', array('id' => $last_id))->result()[0];
+    }
 }
