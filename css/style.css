@@ -144,7 +144,6 @@ html {
 }
 
 .wrapper {
-  margin-top: 80px;
   min-height: calc(100vh - 147px);
 }
 
@@ -183,5 +182,340 @@ html {
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: 1px;
+}
+
+.home-nav {
+  background-color: #ECB235;
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.img-bg {
+  background-color: #21252961;
+  padding: 3px 25px;
+}
+
+.a-text:hover {
+  color: #333;
+  border-bottom: white;
+  text-decoration: underline;
+}
+
+.a-text {
+  color: #333;
+  text-decoration: none;
+}
+
+.img-boder {
+  -webkit-transition: 0.5s all ease-in-out;
+  transition: 0.5s all ease-in-out;
+  cursor: pointer;
+  border-radius: 7px;
+}
+
+.img-boder:hover {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+.margin-top {
+  margin-top: 1.8rem;
+}
+
+.margin-left {
+  margin-left: 25px;
+}
+
+.overflow-img {
+  overflow: hidden;
+  border-radius: 7px;
+}
+
+.bannertext {
+  position: absolute;
+  bottom: 15px;
+  right: auto;
+  left: 25px;
+  right: 0;
+  top: 10%;
+  bottom: auto;
+  text-align: center;
+  text-transform: capitalize;
+  z-index: 2;
+  text-align: left;
+  color: #ffffff;
+  text-align: center;
+}
+
+.bannertext1 {
+  display: block;
+  font-size: 14px;
+  color: #ECB235;
+  text-transform: uppercase;
+  margin: 0 0 3px 0;
+}
+
+.bannertext2 {
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 35px;
+  text-transform: uppercase;
+  margin: 0 0 12px 0;
+}
+
+.bannertext3 {
+  font-size: 32px;
+  display: block;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+}
+
+.bannertext4 {
+  display: block;
+  font-size: 14px;
+  color: #ECB235;
+  margin: 0 0 3px 0;
+}
+
+.bannertext5 {
+  font-size: 18px;
+  font-weight: 500;
+  display: block;
+}
+
+.banner {
+  position: absolute;
+  bottom: 15px;
+  right: auto;
+  left: 25px;
+  top: auto;
+  text-transform: capitalize;
+  z-index: 2;
+  text-align: left;
+  color: #ffffff;
+}
+
+.panel-banner {
+  position: absolute;
+  bottom: 15px;
+  right: auto;
+  left: 25px;
+  top: 340px;
+  text-transform: capitalize;
+  z-index: 2;
+  text-align: left;
+  color: #ffffff;
+}
+
+.bannertext6 {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 35px;
+  text-transform: uppercase;
+  margin: 0 0 12px 0;
+}
+
+.br {
+  border: 1px solid #DFDFDF;
+}
+
+.topalign {
+  margin-top: -20px;
+}
+
+.horizonal {
+  position: relative;
+  z-index: -10;
+}
+
+.back {
+  background-color: #fff;
+}
+
+.nav-border {
+  padding: 0px 20px;
+  text-align: left;
+  text-transform: capitalize;
+  background: #ffffff;
+  font-size: 18px;
+  border: 2px solid #E0E0E0;
+  line-height: 23px;
+  margin: 0 -3px;
+  font-weight: bold;
+}
+
+.nav_border:hover {
+  color: #333;
+  border-bottom: white;
+  text-decoration: underline;
+}
+
+.nav_border {
+  color: #333;
+  text-decoration: none;
+}
+
+.imges:hover {
+  color: #333;
+  border-bottom: white;
+  text-decoration: none;
+}
+
+.imges {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+.imges:hover {
+  color: #333;
+  border-bottom: white;
+  text-decoration: none;
+  -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+  opacity: 0;
+}
+
+.color {
+  color: #ECB235;
+}
+
+.font {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.text-decoration {
+  text-decoration: line-through;
+  color: #9B9B9B;
+}
+
+.font-title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.text-color {
+  color: #050505;
+  text-decoration: none;
+}
+
+.text-color:hover {
+  color: #ECB235;
+  text-decoration: none;
+}
+
+.images {
+  position: relative;
+  overflow: hidden;
+  width: 280px;
+  height: 343px;
+}
+
+.images .card-img-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.images .imges-hover {
+  opacity: 0;
+  -webkit-transform: scale(2);
+          transform: scale(2);
+  -webkit-transition: opacity 0.5s, -webkit-transform 1s;
+  transition: opacity 0.5s, -webkit-transform 1s;
+  transition: transform 1s, opacity 0.5s;
+  transition: transform 1s, opacity 0.5s, -webkit-transform 1s;
+  z-index: 1;
+}
+
+.images:hover .imges-hover {
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.footer_bg {
+  background-color: #050505;
+  height: 600px;
+}
+
+.footer_panal {
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.footer_heading {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 3rem;
+  margin-left: 2rem;
+}
+
+.footer_text {
+  position: relative;
+  padding-left: 18px;
+  padding-bottom: 10px;
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: normal;
+}
+
+.footer_text:hover {
+  color: #ECB235;
+}
+
+.footer-transition {
+  -webkit-transition: 1.5s;
+  transition: 1.5s;
+  position: absolute;
+  margin-top: 6px;
+}
+
+.footer-transition:hover {
+  left: 27px;
+}
+
+.font-weight {
+  font-weight: normal;
+}
+
+.footer-contact {
+  position: relative;
+  background: #0c0c0c;
+  overflow: hidden;
+}
+
+.padding-panal {
+  padding: 2rem;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  border-right: 1px solid #ced4da70;
+}
+
+.footer_email {
+  color: #ffffff;
+}
+
+.footer_email:hover {
+  color: #ECB235;
+}
+
+.footer-openchat {
+  font-size: 15px;
+  color: #ffffff;
+}
+
+.footer_open {
+  color: #ECB235;
+}
+
+.footer_open:hover {
+  color: #ffffff;
+  font-weight: 500;
 }
 /*# sourceMappingURL=style.css.map */
