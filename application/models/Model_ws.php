@@ -23,6 +23,12 @@ class Model_ws extends CI_Model
         //$this->db->insert('business', $data); //add to database here
         //return $this->db->insert_id();
     }
+
+    public function get_business($id)
+    {
+        return $this->db->get_where('business', array('id' => $id))->result()[0];
+    }
+
     public function update_yt_video($id, $data)
     {
         $this -> db -> where('business_id', $id);

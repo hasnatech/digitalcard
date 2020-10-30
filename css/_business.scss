@@ -1,0 +1,69 @@
+
+.settings {
+    .colors, .patterns{
+        display: flex;
+    }
+	.box {
+		width: 50px;
+		height: 50px;
+		border-radius: 5px;
+		background-color: black;
+        margin-right: 10px;
+        transition: background-color 0.5s ease;
+        cursor: pointer;
+	}
+
+	.color1 {
+		background-color: #564ab1;
+    }
+    .color2 {
+		background-color: #50a5f1;
+    }
+    .color3 {
+		background-color: #34c38f;
+    }
+    .color4 {
+		background-color: #f1b44c;
+    }
+    .color5 {
+		background-color: #f46a6a;
+    }
+    .color6 {
+		background-color: #050505;
+	}
+}
+
+.section{
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+.space{
+    height: 100px;
+}
+#business_view {
+    margin: 0 10px;
+    position: relative;
+    .background{
+        position: absolute;
+        left:0;
+        right: 0;
+        top: 0;
+        height: 300px;
+        background-color: #f46a6a;
+        z-index: 1;
+    }
+    .wrapper{
+        position: relative;
+        z-index: 2;
+
+        .panel{
+            background-color: #fff;
+            padding: 40px;
+            max-width: 600px;
+            margin: 20px auto;
+            box-shadow: 0 0 5px #73737369;;
+        }
+
+    }
+}

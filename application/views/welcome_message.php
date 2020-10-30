@@ -30,6 +30,7 @@
 				<li class="nav-item">
 					<a class="nav-link a-text mr-3" href="#">Latest Blogs</a>
 				</li>
+				<li><a href="<?php echo base_url('a/login'); ?>">Login</a></li>
 			</ul>
 		</div>
 </nav>

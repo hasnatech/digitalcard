@@ -1,9 +1,9 @@
 #page-topbar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1002;
+  /*position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 1002;*/
   background-color: #fff;
   -webkit-box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
@@ -184,7 +184,6 @@ html {
   margin-left: 1px;
 }
 
-<<<<<<< HEAD
 .home-nav {
   background-color: #ECB235;
   font-size: 15px;
@@ -518,7 +517,8 @@ html {
 .footer_open:hover {
   color: #ffffff;
   font-weight: 500;
-=======
+}
+
 input.form-control.valid {
   border-color: #34c38f;
   padding-right: calc(1.5em + .94rem);
@@ -548,6 +548,106 @@ label.error {
   margin: 10px;
   color: #dc3545;
   font-style: italic;
->>>>>>> c19e728eb9f99d1fc0d620fffd5279cfa2099772
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.flex .flex-1 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.flex.fcenter {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.settings .colors, .settings .patterns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.settings .box {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: black;
+  margin-right: 10px;
+  -webkit-transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease;
+  cursor: pointer;
+}
+
+.settings .color1 {
+  background-color: #564ab1;
+}
+
+.settings .color2 {
+  background-color: #50a5f1;
+}
+
+.settings .color3 {
+  background-color: #34c38f;
+}
+
+.settings .color4 {
+  background-color: #f1b44c;
+}
+
+.settings .color5 {
+  background-color: #f46a6a;
+}
+
+.settings .color6 {
+  background-color: #050505;
+}
+
+.section {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.space {
+  height: 100px;
+}
+
+#business_view {
+  margin: 0 10px;
+  position: relative;
+}
+
+#business_view .background {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 300px;
+  background-color: #f46a6a;
+  z-index: 1;
+}
+
+#business_view .wrapper {
+  position: relative;
+  z-index: 2;
+}
+
+#business_view .wrapper .panel {
+  background-color: #fff;
+  padding: 40px;
+  max-width: 600px;
+  margin: 20px auto;
+  -webkit-box-shadow: 0 0 5px #73737369;
+          box-shadow: 0 0 5px #73737369;
 }
 /*# sourceMappingURL=style.css.map */

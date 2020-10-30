@@ -257,4 +257,13 @@ class WS extends Admin_Controller
 
         echo json_encode($this->data);
     }
+
+
+    public function getData($id){
+        $this->data = array(
+            'status' => 'success',
+            'data' =>  $this->Model_ws->get_business($id)
+        );
+        echo json_encode( $this->data );
+    }
 }

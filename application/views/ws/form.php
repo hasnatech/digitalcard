@@ -122,6 +122,7 @@
 								</div>
 							</form>
 						</div>
+
 						<div class="tab-pane" id="about" role="tabpanel">
 							<form name='about_form' action="<?php echo base_url('ws/about'); ?>" method="POST">
 								<input type="hidden" name="id" class="business_id">
@@ -147,6 +148,7 @@
 								</div>
 							</form>
 						</div>
+
 						<div class="tab-pane" id="social" role="tabpanel">
 							<form name='social_form' action="<?php echo base_url('ws/social'); ?>" method="POST">
 								<input type="hidden" name="id" class="business_id">
@@ -210,6 +212,7 @@
 								</div>
 							</form>
 						</div>
+
 						<div class="tab-pane" id="services" role="tabpanel">
 							<form name='product_form' action="<?php echo base_url('ws/product'); ?>" method="POST" enctype="multipart/form-data">
 								<input type="hidden" id="product_id" name="product_id">
@@ -268,6 +271,7 @@
 							<button id="product_next" type="submit" class="btn btn-primary w-md">Next</button>
 
 						</div>
+
 						<div class="tab-pane" id="bank" role="tabpanel">
 							<form name='bank_form' action="<?php echo base_url('ws/bank'); ?>" method="POST" enctype="multipart/form-data">
 								<input type="hidden" name="id" class="business_id">
@@ -418,7 +422,7 @@
 									</div>
 								</div>
 
-								<button type="submit" class="btn btn-primary w-md mt-2">Next</button>
+								<button type="submit" class="btn btn-primary w-md mt-2">Upload</button>
 							</form>
 
 							<div class="row mt-5">
@@ -431,10 +435,57 @@
 									</div>
 								</div>
 							</div>
+							<button type="button" id="next_gallery" class="btn btn-primary w-md mt-2">Next</button>
 						</div>
+
 						<div class="tab-pane" id="settings" role="tabpanel">
-							<h1>Hello</h1>
+							<div class="flex">
+
+								<div class="settings">
+									<div class="section">
+										<h2>Logo</h2>
+										<label for="logo">Upload Logo</label>
+										<div class="input-group">
+											<div class="custom-file">
+												<input type="file" class="custom-file-input" id="logo" name="logo" aria-describedby="upi_image">
+												<label class="custom-file-label" for="logo">Choose
+													file</label>
+											</div>
+										</div>
+									</div>
+									<div class="section"> 
+										<h2>Background Color</h2>
+										<div class="colors">
+											<div class="color1 box"></div>
+											<div class="color2 box"></div>
+											<div class="color3 box"></div>
+											<div class="color4 box"></div>
+											<div class="color5 box"></div>
+											<div class="color6 box"></div>
+										</div>
+									</div>
+									<div class="section">
+										<h2>Background Patters</h2>
+										<div class="patterns">
+											<div class="pattern1 box"></div>
+											<div class="pattern2 box"></div>
+											<div class="pattern3 box"></div>
+											<div class="pattern4 box"></div>
+											<div class="pattern5 box"></div>
+											<div class="pattern6 box"></div>
+										</div>
+									</div>
+								</div>
+
+								<div class="page flex-1">
+									<?php
+									$this->load->view("ws/website");
+									?>
+								</div>
+
+							</div>
 						</div>
+
 						<div class="error_msg">
 
 						</div>

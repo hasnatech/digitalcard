@@ -16,6 +16,10 @@ app.controller('myCtrl', function ($scope) {
 	}];
 });
 
+app.controller('businessCtrl', function ($scope) {
+	$scope.business = [];
+});
+
 $(document).ready(function () {
 	var max = 500;
 	$('#aboutus').summernote({
@@ -121,14 +125,41 @@ $(document).ready(function () {
 	$(".nav a").click(function (e) {
 		e.preventDefault();
 	})
-
+	goto(6);
 	function goto(index) {
+		if (index == 6) {
+			$.ajax({
+				type: "GET",
+				url: 'http://localhost/digitalcard/ws/getData/1',
+				success: function (d) {
+					var result = JSON.parse(d);
+					if (result.status === 'success') {
+						//goto(1);
+						console.log(result);
+						angular.element("#business_view").scope().business = result.data;
+						angular.element("#business_view").scope().$apply();
 
-		$(".nav").find("a").removeClass("active");
-		$(".nav").children().eq(index).find("a").addClass("active");
-		$(".tab-pane").hide();
-		var href = $(".nav").children().eq(index).find("a").attr("href")
-		$(href).show();
+						$(".nav").find("a").removeClass("active");
+						$(".nav").children().eq(index).find("a").addClass("active");
+						$(".tab-pane").hide();
+						var href = $(".nav").children().eq(index).find("a").attr("href")
+						$(href).show();
+					} else {
+						$(".error").html(result.error);
+						alert(result.error);
+					}
+				},
+				error: function (e) {
+					alert(e);
+				}
+			});
+		} else {
+			$(".nav").find("a").removeClass("active");
+			$(".nav").children().eq(index).find("a").addClass("active");
+			$(".tab-pane").hide();
+			var href = $(".nav").children().eq(index).find("a").attr("href")
+			$(href).show();
+		}
 		console.log('goto ', index, href);
 	}
 
@@ -153,7 +184,7 @@ $(document).ready(function () {
 				var result = JSON.parse(d);
 				if (result.status === 'success') {
 					//goto(1);
-					goto(4);
+					goto(6);
 					business_id = result.data.id;
 					console.log(business_id);
 					$(".business_id").each(function (index) {
@@ -287,6 +318,10 @@ $(document).ready(function () {
 		goto(4);
 	});
 
+	$("#next_gallery").click(function () {
+		goto(6);
+	});
+
 
 	$("form[name='bank_form']").submit(function (e) {
 		e.preventDefault();
@@ -343,14 +378,14 @@ $(document).ready(function () {
 		e.preventDefault();
 		var form = $(this);
 		var url = form.attr('action');
-		
+
 		var formdata = new FormData();
 		formdata.append('id', business_id);
 		var inputFile = $('input[name="gallery[]"]');
 		for (var i = 0; i < inputFile[0].files.length; ++i) {
 			formdata.append('gallery[]', inputFile[0].files[i]);
 		}
-		
+
 		$.ajax({
 			type: "POST",
 			url: url,
@@ -484,4 +519,9 @@ $(document).ready(function () {
 		},
 	});
 
+
+	$(".colors .box").click(function(){
+		var color = $(this).css('background-color');
+		$(".background").css('background-color', color);
+	})
 });

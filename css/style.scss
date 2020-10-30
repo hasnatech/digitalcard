@@ -1,9 +1,9 @@
 #page-topbar {
-	position: fixed;
+	/*position: fixed;
 	top: 0;
 	right: 0;
 	left: 0;
-	z-index: 1002;
+	z-index: 1002;*/
 	background-color: #fff;
 	-webkit-box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, .03);
 	box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, .03);
@@ -181,7 +181,6 @@ html {
 
 }
 
-<<<<<<< HEAD
 .home-nav {
 	background-color: #ECB235;
 	font-size: 15px;
@@ -498,10 +497,12 @@ html {
 .footer_email:hover {
 	color: #ECB235;
 }
-.footer-openchat{
+
+.footer-openchat {
 	font-size: 15px;
 	color: #ffffff;
 }
+
 .footer_open {
 	color: #ECB235;
 }
@@ -510,7 +511,7 @@ html {
 	color: #ffffff;
 	font-weight: 500;
 }
-=======
+
 input.form-control.valid {
 	border-color: #34c38f;
 	padding-right: calc(1.5em + .94rem);
@@ -536,9 +537,24 @@ label.error {
 	color: #f46a6a;
 }
 
-.error_msg{
+.error_msg {
 	margin: 10px;
 	color: #dc3545;
 	font-style: italic;
 }
->>>>>>> c19e728eb9f99d1fc0d620fffd5279cfa2099772
+
+.flex {
+	display: flex;
+
+	.flex-1 {
+		flex: 1;
+	}
+
+	&.fcenter {
+		justify-content: center;
+		align-items: center;
+
+	}
+}
+
+@import "business";
