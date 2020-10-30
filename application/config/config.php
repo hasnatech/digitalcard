@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/ecard';
+$config['base_url'] = 'http://localhost/digitalcard';
 $config['powered'] = 'Powered by Hasna Technology.';
 $config['version'] = '0.0.1';
 $config['version_number'] = '1';

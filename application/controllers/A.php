@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class A extends MY_Controller {
+class A extends MY_Controller
+{
 
 	/**
 	 * Index Page for this controller.
@@ -21,15 +22,39 @@ class A extends MY_Controller {
 	public function index()
 	{
 		$this->render('welcome_message');
-    }
-    
-    public function login()
+	}
+
+	public function login()
 	{
 		$this->render('account/login');
-    }
-    
-    public function register()
+	}
+
+	public function register()
 	{
-		$this->render('account/register');
+		$this->form_validation->set_rules('companyname', 'Company Name', 'required');
+		$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|min_length[10]|is_unique[register.mobile]');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[register.email]');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]');
+		
+		if ($this->form_validation->run() == TRUE) {
+			echo "validated";
+		} else {
+			$this->data = array(
+				'error' => validation_errors()
+			);
+			$this->render('account/register', $this->data);
+		}
+		
+	}
+
+	public function forget()
+	{
+		$this->render('account/forget');
+	}
+
+	public function new_reg()
+	{
+
+		
 	}
 }

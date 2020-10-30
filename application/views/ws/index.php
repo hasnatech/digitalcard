@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="float-right">
-                        <a href="<?php echo base_url('digitalcard/new'); ?>" class="btn btn-primary">New Card</a>
+                        <a href="<?php echo base_url('ws/new'); ?>" class="btn btn-primary">New Card</a>
                     </div>
                     <h4 class="card-title">Cards</h4>
 

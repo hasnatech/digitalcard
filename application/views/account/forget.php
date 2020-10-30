@@ -7,10 +7,10 @@
                         <div class="card overflow-hidden">
                             <div class="bg-soft-primary">
                                 <div class="row">
-                                    <div class="col-7">
+                                    <div class="col-12">
                                         <div class="text-primary p-4">
-                                            <h5 class="text-primary">Free Register</h5>
-                                            <p>Get your free account now.</p>
+                                            <h5 class="text-primary">Forgot Password</h5>
+                                            <p>Get your OTP in your registered mobile number.</p>
                                         </div>
                                     </div>
                                     <!-- <div class="col-5 align-self-end">
@@ -30,40 +30,17 @@
                                 </div> -->
                                 <div class="mb-3"></div>
                                 <div class="p-2">
-                                    <div class="error">
-                                        <?php echo $error; ?>
-                                    </div>
-                                    <form id="regForm" name="registration" class="form-horizontal" action="<?php echo base_url('a/register'); ?>" method="POST">
-
-                                        <div class="form-group">
-                                            <label for="companyname">Company Name</label>
-                                            <input type="text" class="form-control" name="companyname" id="companyname" placeholder="Enter Company Name" required>
-                                        </div>
+                                    <form id="regForm" name="registration" class="form-horizontal" action="<?php echo base_url('a/forgot'); ?>" method="POST">
 
                                         <div class="form-group">
                                             <label for="mobile">Mobile</label>
-                                            <input type="tel" class="form-control" name="mobile" id="mobile" placeholder="Enter Mobile Number" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="password">Password</label>
-                                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter password">
+                                            <input type="tel" class="form-control" name="mobile" id="mobile" placeholder="Enter mobile">
                                         </div>
 
                                         <div class="mt-4">
-                                            <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Register</button>
+                                            <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Submit</button>
                                         </div>
 
-
-
-                                        <div class="mt-4 text-center">
-                                            <p class="mb-0">By registering you agree to the <a href="#" class="text-primary">Terms of Use</a></p>
-                                        </div>
                                     </form>
                                 </div>
 
@@ -73,6 +50,7 @@
 
 
                             <div>
+                            <p>Don't have an account ? <a href="<?php echo base_url('a/register')?>" class="font-weight-medium text-primary"> Signup now </a> </p>
                                 <p>Already have an account ? <a href="<?php echo base_url('a/login') ?>" class="font-weight-medium text-primary"> Login now </a> </p>
                                 <p>© 2020 copyright. Crafted by Hasna technology</p>
                             </div>
@@ -88,34 +66,25 @@
 <script>
     $().ready(function() {
 
-        $("#regForm[name='registration']").validate({
+        $("#regForm").validate({
             // Specify validation rules
             rules: {
                 // The key name on the left side is the name attribute
                 // of an input field. Validation rules are defined
                 // on the right side
-                companyname: "required",
-                mobile: "required",
-                email: {
+                mobile: {
                     required: true,
                     // Specify that email should be validated
                     // by the built-in "email" rule
-                    email: true
+                    minlength: 10
                 },
-                password: {
-                    required: true,
-                    minlength: 5
-                }
             },
             // Specify validation error messages
             messages: {
-                companyname: "Please enter your Company Name",
-                mobile: "Please enter your mobile Number",
-                password: {
-                    required: "Please provide a password",
-                    minlength: "Your password must be at least 5 characters long"
+                mobile: {
+                    required: "Please provide a valid mobile number",
+                    minlength: "Please provide a valid mobile number"
                 },
-                email: "Please enter a valid email address"
             },
             // Make sure the form is submitted to the destination defined
             // in the "action" attribute of the form when valid

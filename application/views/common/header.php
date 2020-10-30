@@ -23,6 +23,7 @@
     <script src="<?php echo base_url('assets/js/plugins.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/custom.select.plugin.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery.conformy.plugin.js') ?>"></script>
+    <Script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="<?php echo base_url('assets/js/main.js') ?>"></script>
     <!--// Get Full Year Copyright //-->
 
