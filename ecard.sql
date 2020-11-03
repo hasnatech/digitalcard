@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 24, 2020 at 11:22 AM
+-- Generation Time: Nov 03, 2020 at 05:41 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -71,8 +71,8 @@ CREATE TABLE IF NOT EXISTS `business` (
   `googlepay_qr` varchar(255) DEFAULT '',
   `paytm_qr` varchar(255) DEFAULT '',
   `upiid` varchar(255) DEFAULT '',
-  `phonepay` varchar(255) DEFAULT '',
-  `phonepay_qr` varchar(255) DEFAULT '',
+  `phonepe` varchar(255) DEFAULT '',
+  `phonepe_qr` varchar(255) DEFAULT '',
   `upiid_qr` varchar(255) DEFAULT '',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL,
@@ -88,8 +88,8 @@ CREATE TABLE IF NOT EXISTS `business` (
 -- Dumping data for table `business`
 --
 
-INSERT INTO `business` (`id`, `name`, `url`, `company`, `email`, `contact_number`, `whatsapp_number`, `landline_number`, `website`, `g_map`, `address1`, `address2`, `pincode`, `city`, `state`, `country`, `est_year`, `gst`, `about`, `facebook`, `twitter`, `instagram`, `linkedin`, `youtube`, `pinterest`, `other1`, `other2`, `other3`, `bankname`, `account_no`, `branchname`, `ifsc_code`, `account_holder_name`, `account_type`, `iban`, `swift`, `googlepay`, `paytm`, `googlepay_qr`, `paytm_qr`, `upiid`, `phonepay`, `phonepay_qr`, `upiid_qr`, `created_at`, `updated_at`, `is_admin`, `is_agent`, `id_agent`, `is_confirmed`, `is_deleted`) VALUES
-(1, 'Cader', 'hasna', 'Hasna Technology', 'cadersoft@gmail.com', '9840033126', '9840033126', '', '', '', '#1 Jone Street', '', '', '', 'Choose...', 'Choose...', '2014', '1234567890', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2020-10-21 00:00:00', NULL, 0, 0, 0, 0, 0);
+INSERT INTO `business` (`id`, `name`, `url`, `company`, `email`, `contact_number`, `whatsapp_number`, `landline_number`, `website`, `g_map`, `address1`, `address2`, `pincode`, `city`, `state`, `country`, `est_year`, `gst`, `about`, `facebook`, `twitter`, `instagram`, `linkedin`, `youtube`, `pinterest`, `other1`, `other2`, `other3`, `bankname`, `account_no`, `branchname`, `ifsc_code`, `account_holder_name`, `account_type`, `iban`, `swift`, `googlepay`, `paytm`, `googlepay_qr`, `paytm_qr`, `upiid`, `phonepe`, `phonepe_qr`, `upiid_qr`, `created_at`, `updated_at`, `is_admin`, `is_agent`, `id_agent`, `is_confirmed`, `is_deleted`) VALUES
+(1, 'Cader', 'hasna', 'Hasna Technology', 'cadersoft@gmail.com', '9840033126', '9840033126', '', '', '', '#1 Jone Street', '', '', '', 'Choose...', 'Choose...', '2014', '1234567890', 'This is&nbsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos enim quam labore laudantium rerum nobis. Excepturi, ipsa quia! Ab ut ratione est quia quos sapiente maiores commodi, accusantium cupiditate id!&nbsp;This is Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos enim quam labore laudantium rerum nobis. Excepturi, ipsa quia! Ab ut ratione est quia quos sapiente maiores commodi, accusantium cupiditate This is Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos enim qua', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'undefined', 'undefined', '', '', 'undefined', 'locationsMobile2.jpg', '2020-10-21 00:00:00', NULL, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -149,6 +149,33 @@ INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `gallery`
+--
+
+DROP TABLE IF EXISTS `gallery`;
+CREATE TABLE IF NOT EXISTS `gallery` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `business_id` int(11) NOT NULL,
+  `image` text NOT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `gallery`
+--
+
+INSERT INTO `gallery` (`id`, `business_id`, `image`, `created`) VALUES
+(37, 1, 'Icon_material-menu.png', '2020-10-30 15:35:55'),
+(38, 1, 'Icon_material-pause.png', '2020-10-30 15:35:55'),
+(39, 1, 'Icon_material-close1.png', '2020-10-30 15:36:33'),
+(40, 1, 'Icon_material-help1.png', '2020-10-30 15:36:33'),
+(41, 1, 'Icon_material-menu1.png', '2020-10-30 15:36:33'),
+(42, 1, 'Icon_material-pause1.png', '2020-10-30 15:36:33');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `product`
 --
 
@@ -162,15 +189,17 @@ CREATE TABLE IF NOT EXISTS `product` (
   `business_id` int(11) NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`id`, `product`, `mrp`, `our_price`, `image`, `business_id`, `created`) VALUES
-(1, 'Name', 45, 5, 'bellow7.png', 1, '2020-10-24 00:00:00'),
-(2, 'Name', 45, 5, 'bellow9.png', 1, '2020-10-24 15:51:32');
+(29, 'Product q', 500, 450, 'last_screen26.png', 1, '2020-10-27 15:17:47'),
+(26, '', 0, 0, 'last_screen23.png', 1, '2020-10-27 12:58:18'),
+(27, '', 0, 0, 'last_screen24.png', 1, '2020-10-27 15:12:05'),
+(28, '', 0, 0, 'last_screen25.png', 1, '2020-10-27 15:16:30');
 
 -- --------------------------------------------------------
 
@@ -223,14 +252,14 @@ CREATE TABLE IF NOT EXISTS `youtube_video` (
   `yt` text NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `youtube_video`
 --
 
 INSERT INTO `youtube_video` (`id`, `business_id`, `yt`, `created`) VALUES
-(9, 1, '', '2020-10-24 12:10:13');
+(10, 1, '', '2020-10-30 20:08:28');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
