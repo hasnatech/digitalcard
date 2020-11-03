@@ -260,9 +260,14 @@ class WS extends Admin_Controller
 
 
     public function getData($id){
+        $data = $this->Model_ws->get_business($id);
+        $data->product = $this->Model_ws->get_product_by_businessId($id);
+        $data->gallery = $this->Model_ws->get_gallery($id);
+        $data->youtube = $this->Model_ws->get_youtube($id);
+
         $this->data = array(
             'status' => 'success',
-            'data' =>  $this->Model_ws->get_business($id)
+            'data' =>   $data
         );
         echo json_encode( $this->data );
     }

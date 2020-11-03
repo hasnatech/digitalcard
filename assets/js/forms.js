@@ -20,6 +20,8 @@ app.controller('businessCtrl', function ($scope) {
 	$scope.business = [];
 });
 
+app.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
+
 $(document).ready(function () {
 	var max = 500;
 	$('#aboutus').summernote({
@@ -125,7 +127,7 @@ $(document).ready(function () {
 	$(".nav a").click(function (e) {
 		e.preventDefault();
 	})
-	goto(6);
+	//goto(6);
 	function goto(index) {
 		if (index == 6) {
 			$.ajax({
@@ -171,7 +173,7 @@ $(document).ready(function () {
 	$("#contact_number").val('9840033126');
 	$("#whatsapp_number").val('9840033126');
 	var business_id = -1;
-
+	goto(6);
 	$("form[name='company_save']").submit(function (e) {
 		e.preventDefault();
 		var form = $(this);
@@ -183,8 +185,8 @@ $(document).ready(function () {
 			success: function (d) {
 				var result = JSON.parse(d);
 				if (result.status === 'success') {
-					//goto(1);
-					goto(6);
+					goto(1);
+					//goto(6);
 					business_id = result.data.id;
 					console.log(business_id);
 					$(".business_id").each(function (index) {
@@ -523,5 +525,10 @@ $(document).ready(function () {
 	$(".colors .box").click(function(){
 		var color = $(this).css('background-color');
 		$(".background").css('background-color', color);
+	})
+
+	$(".patterns .box").click(function(){
+		var image = $(this).css('background-image');
+		$(".background").css('background-image', image);
 	})
 });

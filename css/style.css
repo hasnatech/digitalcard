@@ -581,10 +581,9 @@ label.error {
   width: 50px;
   height: 50px;
   border-radius: 5px;
-  background-color: black;
+  background-color: #818181;
+  border: 1px solid #ccc;
   margin-right: 10px;
-  -webkit-transition: background-color 0.5s ease;
-  transition: background-color 0.5s ease;
   cursor: pointer;
 }
 
@@ -612,6 +611,26 @@ label.error {
   background-color: #050505;
 }
 
+.settings .pattern2 {
+  background-image: url("../assets/images/patern2.png");
+}
+
+.settings .pattern3 {
+  background-image: url("../assets/images/patern3.png");
+}
+
+.settings .pattern4 {
+  background-image: url("images/patern1.png");
+}
+
+.settings .pattern5 {
+  background-image: url("images/patern1.png");
+}
+
+.settings .pattern6 {
+  background-image: url("images/patern1.png");
+}
+
 .section {
   padding-bottom: 20px;
   margin-bottom: 20px;
@@ -634,6 +653,8 @@ label.error {
   top: 0;
   height: 300px;
   background-color: #f46a6a;
+  -webkit-transition: background-color 2s ease;
+  transition: background-color 2s ease;
   z-index: 1;
 }
 
