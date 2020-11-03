@@ -54,12 +54,24 @@ class Model_ws extends CI_Model
     {
         return $this->db->get_where('product', array('id' => $id))->result()[0];
     }
-
+    public function get_product_by_businessId($id)
+    {
+        return $this->db->get_where('product', array('business_id' => $id))->result();
+    }
     
     public function insert_gallery($data)
     {
         $this->db->insert('gallery', $data); //add to database here
         $last_id =  $this->db->insert_id();
         return $this->db->get_where('gallery', array('id' => $last_id))->result()[0];
+    }
+
+    public function get_gallery($id)
+    {
+        return $this->db->get_where('gallery', array('business_id' => $id))->result();
+    }
+    public function get_youtube($id)
+    {
+        return $this->db->get_where('youtube_video', array('business_id' => $id))->result();
     }
 }
