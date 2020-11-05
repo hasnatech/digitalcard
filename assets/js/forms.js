@@ -16,9 +16,13 @@ app.controller('myCtrl', function ($scope) {
 	}];
 });
 
-app.controller('businessCtrl', function ($scope) {
+app.controller('businessCtrl', function ($scope, $sce) {
 	$scope.business = [];
+	$scope.trustSrc = function(src) {
+		return $sce.trustAsResourceUrl(src);
+	}
 });
+
 
 app.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
 
@@ -173,7 +177,7 @@ $(document).ready(function () {
 	$("#contact_number").val('9840033126');
 	$("#whatsapp_number").val('9840033126');
 	var business_id = -1;
-	goto(6);
+	
 	$("form[name='company_save']").submit(function (e) {
 		e.preventDefault();
 		var form = $(this);
@@ -530,5 +534,6 @@ $(document).ready(function () {
 	$(".patterns .box").click(function(){
 		var image = $(this).css('background-image');
 		$(".background").css('background-image', image);
-	})
+	});
+	goto(6);
 });

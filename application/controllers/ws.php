@@ -169,8 +169,8 @@ class WS extends Admin_Controller
         if ($this->upload->do_upload('googlepay_qr')) {
             $googlepay_qr = $this->upload->data();
             $data['googlepay_qr'] = $googlepay_qr['file_name'];
-            echo 'googlepay_qr';
-            print_r($data['googlepay_qr']);
+            //echo 'googlepay_qr';
+            //print_r($data['googlepay_qr']);
         }
 
         if ($this->upload->do_upload('paytm_qr')) {
@@ -263,7 +263,7 @@ class WS extends Admin_Controller
         $data = $this->Model_ws->get_business($id);
         $data->product = $this->Model_ws->get_product_by_businessId($id);
         $data->gallery = $this->Model_ws->get_gallery($id);
-        $data->youtube = $this->Model_ws->get_youtube($id);
+        $data->youtube_list = $this->Model_ws->get_youtube($id);
 
         $this->data = array(
             'status' => 'success',
