@@ -105,16 +105,26 @@
 										<div class="form-group"><label for="city">City</label><input type="text" class="form-control" id="city"></div>
 									</div>
 									<div class="col-lg-4">
-										<div class="form-group"><label for="state">State</label><select name="state" id="state" class="form-control">
+									<div class="form-group">
+											<label for="state">State</label>
+											<input type="text" class="form-control" name="state">
+										</div>
+										<!--<div class="form-group"><label for="state">State</label>
+										<select name="state" id="state" class="form-control">
 												<option selected="">Choose...</option>
 												<option>...</option>
-											</select></div>
+											</select>
+										</div>-->
 									</div>
 									<div class="col-lg-4">
-										<div class="form-group"><label for="country">Country</label><select name="country" id="country" class="form-control">
+									<div class="form-group">
+											<label for="country">Country</label>
+											<input type="text" class="form-control" name="country">
+										</div>
+										<!--<div class="form-group"><label for="country">Country</label><select name="country" id="country" class="form-control">
 												<option selected="">Choose...</option>
 												<option>...</option>
-											</select></div>
+											</select></div>-->
 									</div>
 								</div>
 								<div>
@@ -269,7 +279,6 @@
 								</div>
 							</div>
 							<button id="product_next" type="submit" class="btn btn-primary w-md">Next</button>
-
 						</div>
 
 						<div class="tab-pane" id="bank" role="tabpanel">
@@ -293,7 +302,7 @@
 											</div>
 											<div class="col-lg-6">
 												<div class="form-group">
-													<label for="branchname">branchname Name</label>
+													<label for="branchname">Branch Name</label>
 													<input type="text" class="form-control" id="branchname" name="branchname" placeholder="Enter Your Branch Name">
 												</div>
 											</div>
@@ -428,7 +437,7 @@
 							<div class="row mt-5">
 								<div class="col-md-3" ng-repeat="item in gallery">
 									<div class="card card_border" style="width: 100%;">
-										<img src="<?php echo base_url('upload/'); ?>{{item.image}}" class="card-img-top img-thumbnail" alt="...">
+										<img ng-src="<?php echo base_url('upload/');?>{{item.image}}" class="card-img-top img-thumbnail" alt="...">
 										<div class="card-block">
 											<a href="#" class="btn btn-danger ">Delete</a>
 										</div>
