@@ -173,7 +173,7 @@ $(document).ready(function () {
 	$("#contact_number").val('9840033126');
 	$("#whatsapp_number").val('9840033126');
 	var business_id = -1;
-	goto(6);
+	//goto(6);
 	$("form[name='company_save']").submit(function (e) {
 		e.preventDefault();
 		var form = $(this);
