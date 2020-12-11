@@ -32,19 +32,21 @@ class Admin_Controller extends MY_Controller
     {
         parent::__construct();
 
-        /*$group_data = array();
+        $group_data = array();
         if (empty($this->session->userdata('logged_in'))) {
             $session_data = array('logged_in' => FALSE);
             $this->session->set_userdata($session_data);
+            redirect('a/login', 'refresh');
         } else {
             $user_id = $this->session->userdata('id');
-            $this->load->model('model_groups');
-            $group_data = $this->model_groups->getUserGroupByUserId($user_id);
+            //$this->load->model('model_groups');
+            /*$group_data = $this->model_groups->getUserGroupByUserId($user_id);
 
             $this->data['user_permission'] = unserialize($group_data['permission']);
 
-            $this->permission = unserialize($group_data['permission']);
-        }*/
+            $this->permission = unserialize($group_data['permission']);*/
+        }
+        //$this->logged_in();
     }
 
     public function logged_in()

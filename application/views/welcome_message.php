@@ -18,21 +18,28 @@
 				<li class="nav-item">
 					<a class="nav-link a-text mr-3" href="#">Home</a>
 				</li>
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 					<a class="nav-link a-text mr-3" href="#">Sitemap</a>
-				</li>
+				</li> -->
 				<li class="nav-item">
-					<a class="nav-link a-text mr-3" href="#">Aboutus</a>
+					<a class="nav-link a-text mr-3" href="#">About us</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link a-text mr-3" href="#">Contact Us</a>
 				</li>
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 					<a class="nav-link a-text mr-3" href="#">Latest Blogs</a>
-				</li>
-				<li><a href="<?php echo base_url('a/login'); ?>">Login</a></li>
+				</li> -->
+				<!-- <li class="nav-item"><a class="nav-link a-text mr-3" href="<?php echo base_url('a/login'); ?>">Login</a></li>
+				<li class="nav-item"><a class="nav-link a-text mr-3" href="<?php echo base_url('a/register'); ?>">Register</a></li> -->
 			</ul>
 		</div>
+
+		<div>
+		<a class="rounded-button btn-primary" href="<?php echo base_url('a/login'); ?>">Login</a>
+			<a class="rounded-button btn-primary" href="<?php echo base_url('a/register'); ?>">Register</a>
+		</div>
+
 </nav>
 
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -41,7 +48,7 @@
 			<img src="assets/images/users/main-banner.png" class="d-block w-100" alt="...">
 		</div>
 		<div class="carousel-item">
-			<img src="assets/images/users/main-banner-02.png" class="d-block w-100" alt="...">
+			<img src="assets/images/users/main-banner-03.png" class="d-block w-100" alt="...">
 		</div>
 	</div>
 	<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -73,7 +80,7 @@
 				<div class="col-lg-6 col-md-6 col-sm-6">
 					<div class="overflow-img">
 						<a href="">
-							<img src="assets/images/users/banner_img2.jpg" class="d-block img-boder"></a>
+							<img src="assets/images/users/image1.jpeg" class="d-block img-boder"></a>
 						<div class="banner">
 							<div class="bannertext4">Popular Items</div>
 							<div class="bannertext5">Gold Bracelet & Ring</div>
@@ -110,7 +117,7 @@
 <div class="container">
 	<h2 class="text-center mt-5">Trending Products</h2>
 	<div class="br mt-5 horizonal"></div>
-	<ul class="nav justify-content-center topalign">
+	<!-- <ul class="nav justify-content-center topalign">
 		<li class="nav-item nav-border back">
 			<a class="nav-link nav_border" href="#">New Products</a>
 		</li>
@@ -120,7 +127,7 @@
 		<li class="nav-item nav-border back">
 			<a class="nav-link nav_border" href="#">Special Products</a>
 		</li>
-	</ul>
+	</ul> -->
 
 	<div class="card-group">
 		<div class="card">
@@ -363,28 +370,27 @@
 		<div class="footer-contact mt-5">
 			<div class="row">
 				<div class="col-4 padding-panal">
-				<i class="fas fa-phone-square-alt danger">
+				<i class="fas fa-phone-square-alt danger"></i>
 						<span class="">Phone: +123-456-7890</span> 
-					</i>
+					
 				</div>
 				<div class="col-4 padding-panal">
-					<i class="fas fa-envelope color">
+					<i class="fas fa-envelope color"></i>
 						<span> Email:</span>
 						<a href="">
-						<span class="footer_email">info@example.com</i></span></a>
+						<span class="footer_email">info@example.com</span></a>
 				</div>
 				<div class="col-4 padding-panal">
-					<i class="fas fa-phone-alt danger">
-						<p> Address: 121 Park Drive, Varick, Usa</p>
-					</i>
+					<i class="fas fa-phone-alt danger">						
+					</i><span> Address: 121 Park Drive, Varick, Usa</span>
 				</div>
 			</div>
 		</div>
 		<div class="row mt-5">
+			<!-- <div class="col-6">
+				<p class="footer-openchat">Powered By <span > <a class="footer_open" href="http://www.hasnatech.com"> Hasna Technology</a></span> © 2020</p>
+			</div> -->
 			<div class="col-6">
-				<p class="footer-openchat">Powered By <span > <a class="footer_open" href=""> OpenCart</a></span>  Jwellix © 2020</p>
-			</div>
-			<div class="col-6 float-right">
 				<div class="row">
 					<div class="col-1">
 					<img class="" src="assets/images/users/card-1.png">

@@ -1,30 +1,97 @@
 var app = angular.module('myApp', []);
-app.controller('myCtrl', function ($scope) {
-	$scope.products = [{
-		id: "5",
-		business_id: "1",
-		image: "last_screen3.png",
-		mrp: "500",
-		our_price: "450",
-		product: "iPhone"
-	}];
+var product_max_count = 5;
+var gallery_max_count = 10;
+//var base_url = "http://localhost/digitalcard/";
+var base_url = "http://imitationjewelryindia.com/";
+app.controller('myCtrl', function ($scope, $http) {
+
+	$scope.selectedProduct = [];
 
 	$scope.gallery = [{
 		id: "5",
 		business_id: "1",
 		image: "last_screen3.png",
 	}];
+
+	$scope.delete_youtube = function (id, index) {
+		console.log(id, index);
+		$scope.business.youtube_list.splice(index, 1);
+		console.log($scope.business.youtube_list);
+	}
+
+	$scope.add_youtube = function () {
+		$scope.business.youtube_list.push({
+			"yt": ""
+		});
+	}
+
+	$scope.product_delete = function (index) {
+
+		$http({
+				method: 'DELETE',
+				url: base_url + 'WS/delete_product/' + $scope.business.product[index].id,
+				data: {
+					id: $scope.business.product[index].id
+				},
+				headers: {
+					'Content-type': 'application/json;charset=utf-8'
+				}
+			})
+			.then(function (response) {
+				console.log(response.data);
+			}, function (rejection) {
+				console.log(rejection.data);
+			});
+
+		$scope.business.product.splice(index, 1);
+	}
+
+
+	$scope.delete_gallery = function (index) {
+
+		$http({
+				method: 'DELETE',
+				url:  base_url + 'WS/delete_gallery/' + $scope.business.gallery[index].id,
+				data: {
+					id: $scope.business.gallery[index].id
+				},
+				headers: {
+					'Content-type': 'application/json;charset=utf-8'
+				}
+			})
+			.then(function (response) {
+				console.log(response.data);
+			}, function (rejection) {
+				console.log(rejection.data);
+			});
+
+		$scope.business.gallery.splice(index, 1);
+	}
+
+	$scope.product_edit = function (index) {
+		$scope.selectedProduct = $scope.business.product[index];
+	}
 });
 
 app.controller('businessCtrl', function ($scope, $sce) {
 	$scope.business = [];
-	$scope.trustSrc = function(src) {
-		return $sce.trustAsResourceUrl(src);
+	$scope.trustSrc = function (src) {
+		var id = getId(src);
+		return $sce.trustAsResourceUrl('//www.youtube.com/embed/' + id);
 	}
 });
 
+function getId(url) {
+	const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+	const match = url.match(regExp);
 
-app.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
+	return (match && match[2].length === 11) ?
+		match[2] :
+		null;
+}
+app.filter('unsafe', function ($sce) {
+	return $sce.trustAsHtml;
+});
 
 $(document).ready(function () {
 	var max = 500;
@@ -73,7 +140,7 @@ $(document).ready(function () {
 	function maxCharacter(length) {
 		console.log(length);
 	}
-	var youtube_link =
+	/*var youtube_link =
 		` <div class="col-lg-12"> 
                 <div class="videolink_item">
                  <div class="row"> 
@@ -81,7 +148,7 @@ $(document).ready(function () {
                  <div class="form-group"> 
                 <label for="youtube1">Youtube Video 1</label> <div class="input-group"> <input type="text"class="form-control"id="youtube1"name="youtube1"> 
                 <span class="input-group-btn input-group-append"> <button class="btn btn-danger"type="button">x</button> </span> </div> </div> </div> </div> </div> </div> `;
-
+	*/
 	var product =
 		` <div id="{{id}}" class="col-lg-4">
 		<div class="card card_border" style="width: 18rem;">
@@ -96,13 +163,15 @@ $(document).ready(function () {
 	</div>`
 
 
-	$("#plus_youtube").click(function (e) {
+	/*$("#plus_youtube").click(function (e) {
 		e.preventDefault();
-		$(".videolink").append(youtube_link);
+		//$(".videolink").append(youtube_link);
+		angular.element("#business_view").scope().business.youtube_link = result.data.result;
+		angular.element("#business_view").scope().$apply();
 		resetYoutubeLink();
-	})
+	})*/
 
-	function resetYoutubeLink() {
+	/*function resetYoutubeLink() {
 		var i = 0;
 
 		$(".videolink_item").each(function () {
@@ -124,25 +193,38 @@ $(document).ready(function () {
 			}
 
 		)
-	}
+	}*/
 
-	$("#plus_youtube").click();
+	//$("#plus_youtube").click();
 
 	$(".nav a").click(function (e) {
 		e.preventDefault();
 	})
+
+	$(".back_btn").click(function (e) {
+		var data = $(this).attr('data-value');
+		goto(data);
+	});
+
 	//goto(6);
 	function goto(index) {
 		if (index == 6) {
+			/*angular.element("#business_view").scope().business = angular.element("#headline").scope().business;
+			angular.element("#business_view").scope().$apply();
+			$(".nav").find("a").removeClass("active");
+			$(".nav").children().eq(index).find("a").addClass("active");
+			$(".tab-pane").hide();
+			var href = $(".nav").children().eq(index).find("a").attr("href")
+			$(href).show();*/
 			$.ajax({
 				type: "GET",
-				url: 'http://localhost/digitalcard/ws/getData/1',
+				url: base_url + '/WS/getData/' + business_id,
 				success: function (d) {
 					var result = JSON.parse(d);
 					if (result.status === 'success') {
 						//goto(1);
 						console.log(result);
-						angular.element("#business_view").scope().business = result.data;
+						angular.element("#business_view").scope().business = result.data[0];
 						angular.element("#business_view").scope().$apply();
 
 						$(".nav").find("a").removeClass("active");
@@ -170,18 +252,19 @@ $(document).ready(function () {
 	}
 
 	// first form
-	$("#name").val('Cader');
+	/*$("#name").val('Cader');
 	$("#company").val('Hasna Technology');
 	$("#url").val('hasna');
 	$("#email").val('cadersoft@gmail.com');
 	$("#contact_number").val('9840033126');
-	$("#whatsapp_number").val('9840033126');
+	$("#whatsapp_number").val('9840033126');*/
 	var business_id = -1;
-	
+
 	$("form[name='company_save']").submit(function (e) {
 		e.preventDefault();
 		var form = $(this);
 		var url = form.attr('action');
+		$("#error_msg1").html("");
 		$.ajax({
 			type: "POST",
 			url: url,
@@ -190,14 +273,19 @@ $(document).ready(function () {
 				var result = JSON.parse(d);
 				if (result.status === 'success') {
 					goto(1);
-					//goto(6);
+
 					business_id = result.data.id;
+					if (result.data.result.length > 0) {
+						angular.element("#headline").scope().business = result.data.result[0];
+						angular.element("#headline").scope().$apply();
+						//goto(6);
+					}
 					console.log(business_id);
 					$(".business_id").each(function (index) {
 						$(this).val(result.data.id);
 					})
 				} else {
-					$(".error").html(result.error);
+					$("#error_msg1").html(result.error);
 					alert(result.error);
 				}
 			},
@@ -259,66 +347,162 @@ $(document).ready(function () {
 
 	$("form[name='product_form']").submit(function (e) {
 		e.preventDefault();
+
+		if (angular.element("#headline").scope().business.product.length > product_max_count - 1) {
+			alert("You can upload max  of " + product_max_count + " products.");
+			return;
+		}
+
 		var form = $(this);
 		var url = form.attr('action');
 		var form_validation = true;
 		var inputFile = $('input[name=service_image]');
 		var fileToUpload = inputFile[0].files[0];
 		var other_data = $(this).serializeArray();
-		var formdata = new FormData();
-		//$("#business_id").val(business_id);
-		formdata.append('id', business_id);
-		formdata.append('image', fileToUpload);
-		console.log(other_data)
-		other_data.forEach(element => {
-			if (element.name != 'product_id' && element.value != '') {
-				formdata.append(element.name, element.value);
+		if (fileToUpload.size < (1024 * 1024) * 2) {
+			var formdata = new FormData();
+			//$("#business_id").val(business_id);
+			formdata.append('id', business_id);
+			formdata.append('image', fileToUpload);
+			//console.log(fileToUpload.size)
+			other_data.forEach(element => {
+				if (element.name != 'product_id' && element.value != '') {
+					formdata.append(element.name, element.value);
 
-				//product = product.replace('{{' + element.name + '}}', element.value);
-				console.log('{{' + element.name + '}}', element.value);
-				if (element.value == '') {
-					form_validation = false;
+					//product = product.replace('{{' + element.name + '}}', element.value);
+					console.log('{{' + element.name + '}}', element.value);
+					if (element.value == '') {
+						form_validation = false;
+					}
 				}
+			});
+			//console.log(form_validation, fileToUpload);
+			if (form_validation == false || fileToUpload == undefined) {
+				return
 			}
-		});
-		console.log(form_validation, fileToUpload);
-		if (form_validation == false || fileToUpload == undefined) {
-			return
+
+			$("form[name='product_form'] input").val('');
+			setTimeout(function () {
+				$("label.error").remove();
+				$(".error").removeClass("error");
+				$(".valid").removeClass("valid");
+			}, 500);
+
+			console.log(fileToUpload);
+			$.ajax({
+				type: "POST",
+				url: url,
+				data: formdata,
+				processData: false,
+				contentType: false,
+				success: function (d) {
+					var result = JSON.parse(d);
+					if (result.status === 'success') {
+						//goto(4);
+						console.log(result.data);
+						angular.element("#headline").scope().business.product.push(result.data);
+						angular.element("#headline").scope().$apply();
+
+					} else {
+						$(".error").html(result.error);
+						alert(result.error);
+					}
+				},
+				error: function (e) {
+					alert(e);
+				}
+			});
+		} else {
+			alert("The attached image is " + (fileToUpload.size / (1024 * 1024)).toFixed(2) + "MB. The max file size allowed 2 MB.");
 		}
-
-		$("form[name='product_form'] input").val('');
-		setTimeout(function () {
-			$("label.error").remove();
-			$(".error").removeClass("error");
-			$(".valid").removeClass("valid");
-		}, 500);
-
-		console.log(fileToUpload);
-		$.ajax({
-			type: "POST",
-			url: url,
-			data: formdata,
-			processData: false,
-			contentType: false,
-			success: function (d) {
-				var result = JSON.parse(d);
-				if (result.status === 'success') {
-					//goto(4);
-					console.log(result.data);
-					angular.element("#headline").scope().products.push(result.data);
-					angular.element("#headline").scope().$apply();
-
-				} else {
-					$(".error").html(result.error);
-					alert(result.error);
-				}
-			},
-			error: function (e) {
-				alert(e);
-			}
-		});
-
 	});
+
+	$("form[name='logo_form']").submit(function (e) {
+		e.preventDefault();
+		var form = $(this);
+		var url = form.attr('action');
+		var form_validation = true;
+		var inputFile = $('input[name=logo]');
+		var fileToUpload = inputFile[0].files[0];
+		if (fileToUpload.size < (1024 * 1024) * 2) {
+			var formdata = new FormData();
+			formdata.append('id', business_id);
+			formdata.append('image', fileToUpload);
+			if (form_validation == false || fileToUpload == undefined) {
+				return
+			}
+
+			$.ajax({
+				type: "POST",
+				url: url,
+				data: formdata,
+				processData: false,
+				contentType: false,
+				success: function (d) {
+					var result = JSON.parse(d);
+					if (result.status === 'success') {
+						//goto(4);
+						console.log(result.data);
+						angular.element("#business_view").scope().business.logo = result.data;
+						angular.element("#business_view").scope().$apply();
+
+					} else {
+						$(".error").html(result.error);
+						alert(result.error);
+					}
+				},
+				error: function (e) {
+					alert(e);
+				}
+			});
+		} else {
+			alert("The attached image is " + (fileToUpload.size / (1024 * 1024)).toFixed(2) + "MB. The max file size allowed 2 MB.");
+		}
+	});
+
+	$("form[name='background_form']").submit(function (e) {
+		e.preventDefault();
+		var form = $(this);
+		var url = form.attr('action');
+		var form_validation = true;
+		var inputFile = $('input[name=background]');
+		var fileToUpload = inputFile[0].files[0];
+		if (fileToUpload.size < (1024 * 1024) * 2) {
+			var formdata = new FormData();
+			formdata.append('id', business_id);
+			formdata.append('image', fileToUpload);
+			if (form_validation == false || fileToUpload == undefined) {
+				return
+			}
+
+			$.ajax({
+				type: "POST",
+				url: url,
+				data: formdata,
+				processData: false,
+				contentType: false,
+				success: function (d) {
+					var result = JSON.parse(d);
+					if (result.status === 'success') {
+						//goto(4);
+						console.log(result.data);
+						angular.element("#business_view").scope().business.background = result.data;
+						angular.element("#business_view").scope().$apply();
+
+					} else {
+						$(".error").html(result.error);
+						alert(result.error);
+					}
+				},
+				error: function (e) {
+					alert(e);
+				}
+			});
+		} else {
+			alert("The attached image is " + (fileToUpload.size / (1024 * 1024)).toFixed(2) + "MB. The max file size allowed 2 MB.");
+		}
+	});
+
 
 	$("#product_next").click(function () {
 		goto(4);
@@ -336,7 +520,7 @@ $(document).ready(function () {
 
 		var other_data = form.serializeArray();
 		var formdata = new FormData();
-		formdata.append('id', business_id);
+		//formdata.append('id', business_id);
 
 		if (getImage('googlepay_qr') != undefined) {
 			formdata.append('googlepay_qr', getImage('googlepay_qr'));
@@ -388,8 +572,27 @@ $(document).ready(function () {
 		var formdata = new FormData();
 		formdata.append('id', business_id);
 		var inputFile = $('input[name="gallery[]"]');
+
+
+		if (angular.element("#headline").scope().business.gallery.length +
+			inputFile.length >
+			gallery_max_count) {
+			alert("You can upload max  of " + gallery_max_count + " images.");
+			return;
+		}
+
+		var fileSizeisHuge = false;
 		for (var i = 0; i < inputFile[0].files.length; ++i) {
+			if (inputFile[0].files[i].size > (1024 * 1024) * 2) {
+				fileSizeisHuge = true;
+			}
 			formdata.append('gallery[]', inputFile[0].files[i]);
+		}
+
+
+		if (fileSizeisHuge) {
+			alert("One or more files are more than 2 MB size. The system will accept only files less than 2 MB.");
+			return;
 		}
 
 		$.ajax({
@@ -402,8 +605,11 @@ $(document).ready(function () {
 				var result = JSON.parse(d);
 				if (result.status === 'success') {
 					//goto(5);
-					angular.element("#headline").scope().gallery = result.data;
-					angular.element("#headline").scope().$apply()
+					for (let i = 0; i < result.data.length; i++) {
+						const element = result.data[i];
+						angular.element("#headline").scope().business.gallery.push(element);
+					}
+					angular.element("#headline").scope().$apply();
 					console.log(result.data);
 					//business_id = result.data.id;
 				} else {
@@ -417,8 +623,47 @@ $(document).ready(function () {
 		});
 	});
 
+
+	var _URL = window.URL || window.webkitURL;
+
+	$("input[type=file]").change(function (e) {
+		var file, img;
+		if ((file = this.files[0])) {
+			img = new Image();
+			img.onload = function () {
+				if (file.size < (1024 * 1024) * 2) {
+					if (this.width < 1000 && this.height < 1000) {
+
+					} else {
+						alert("The dimension of the image should be less than 1000 x 1000");
+						//this.width + " " + this.height);
+					}
+				} else {
+					alert("The attached image is " + (file.size / (1024 * 1024)).toFixed(2) + "MB. The max file size allowed 2 MB.");
+				}
+			};
+			img.onerror = function () {
+				alert("not a valid file: " + file.type);
+			};
+			img.src = _URL.createObjectURL(file);
+
+
+		}
+
+	});
+
 	function getImage(name) {
 		var image = $('input[name=' + name + ']');
+		var fileToUpload = image[0].files[0];
+		console.log(fileToUpload);
+		if (fileToUpload != undefined) {
+			if (fileToUpload.size < (1024 * 1024) * 2) {
+
+
+			} else {
+				alert("The attached image is " + (fileToUpload.size / (1024 * 1024)).toFixed(2) + "MB. The max file size allowed 2 MB.");
+			}
+		}
 		return image[0].files[0];
 	}
 	// Validation
@@ -526,14 +771,92 @@ $(document).ready(function () {
 	});
 
 
-	$(".colors .box").click(function(){
+	$(".colors .box").click(function () {
 		var color = $(this).css('background-color');
-		$(".background").css('background-color', color);
+		//$(".background").css('background-color', color);
+
+		//var form = $(this);
+		//var url = form.attr('action');
+		$.ajax({
+			type: "POST",
+			url: base_url + "WS/color",
+			data: {
+				id: business_id,
+				color: color
+			}, // serializes the form's elements.
+			success: function (d) {
+				var result = JSON.parse(d);
+				if (result.status === 'success') {
+					console.log(result.data);
+					angular.element("#business_view").scope().business.color = result.data;
+					angular.element("#business_view").scope().$apply();
+
+				} else {
+					$(".error").html(result.error);
+					alert(result.error);
+				}
+			},
+			error: function (e) {
+				alert(e);
+			}
+		});
 	})
 
-	$(".patterns .box").click(function(){
-		var image = $(this).css('background-image');
-		$(".background").css('background-image', image);
+	$("#remove_bg").click(function () {
+		$.ajax({
+			type: "POST",
+			url: base_url + "WS/backgroundData",
+			data: {
+				id: business_id,
+				background: ""
+			}, // serializes the form's elements.
+			success: function (d) {
+				var result = JSON.parse(d);
+				if (result.status === 'success') {
+					console.log(result.data);
+					angular.element("#business_view").scope().business.background = result.data;
+					angular.element("#business_view").scope().$apply();
+
+				} else {
+					$(".error").html(result.error);
+					alert(result.error);
+				}
+			},
+			error: function (e) {
+				alert(e);
+			}
+		});
+	})
+
+	$(".patterns .box").click(function () {
+		var image = $(this).attr('data-background');
+		//$(".background").css('background-image', image);
+
+		$.ajax({
+			type: "POST",
+			url: base_url + "WS/backgroundData",
+			data: {
+				id: business_id,
+				background: image
+			}, // serializes the form's elements.
+			success: function (d) {
+				var result = JSON.parse(d);
+				if (result.status === 'success') {
+					console.log(result.data);
+					angular.element("#business_view").scope().business.background = result.data;
+					angular.element("#business_view").scope().$apply();
+
+				} else {
+					$(".error").html(result.error);
+					alert(result.error);
+				}
+			},
+			error: function (e) {
+				alert(e);
+			}
+		});
 	});
-	goto(6);
+
+
+	// goto(6);
 });

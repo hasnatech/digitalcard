@@ -7,7 +7,7 @@ class C extends MY_Controller
 	public function site($id)
 	{
         //echo $id;
-		$this->render('ws/website');
+		$this->render('WS/website');
     }
 
 }

@@ -78,7 +78,7 @@ body {
 }
 
 html {
-  font-family: sans-serif;
+  font-family: Poppins, sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
@@ -192,7 +192,6 @@ html {
 }
 
 .img-bg {
-  background-color: #21252961;
   padding: 3px 25px;
 }
 
@@ -571,7 +570,23 @@ label.error {
           align-items: center;
 }
 
-.settings .colors, .settings .patterns {
+.form-control:disabled, .form-control[readonly] {
+  opacity: 0.5;
+}
+
+.rounded-button {
+  background-color: #a77a19;
+  color: #fff;
+  padding: 5px 25px;
+  border-radius: 20px;
+  font-weight: normal;
+  margin: 0 10px;
+  -webkit-box-shadow: 3px 2px 3px 1px #00000030;
+          box-shadow: 3px 2px 3px 1px #00000030;
+}
+
+.settings .colors,
+.settings .patterns {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -642,7 +657,7 @@ label.error {
 }
 
 #business_view {
-  margin: 0 10px;
+  /*margin: 0 10px;*/
   position: relative;
 }
 
@@ -672,102 +687,67 @@ label.error {
           box-shadow: 0 0 5px #73737369;
 }
 
-.btn-panal {
-  color: #fff !important;
-  background-color: #00E676;
-  border-color: #00E676;
+.logo img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-top: -100px;
+  margin-bottom: 50px;
 }
 
-.btn-panal:hover {
-  color: #fff !important;
-  background-color: #00E676;
-  border-color: #00E676;
+.panal_Gallery {
+  width: 100%;
+  height: 150px;
+  background-size: cover;
+  margin: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
 }
 
-.modal {
+.model {
   display: none;
   position: fixed;
-  z-index: 1;
-  padding-top: 100px;
   left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: black;
-}
-
-/* Modal Content */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  width: 100%;
-  max-width: 1600px;
-}
-
-/* The Close Button */
-.close {
-  color: white;
-  position: absolute;
-  top: 10px;
-  right: 25px;
-  font-size: 35px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #999;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.mySlides {
-  display: none;
-}
-
-.cursor {
-  cursor: pointer;
-}
-.prev,
-.next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -50px;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.next {
   right: 0;
-  border-radius: 3px 0 0 3px;
+  top: 0;
+  bottom: 0;
+  background-color: #333c;
+  z-index: 100;
 }
 
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+.model .modal-dialog {
+  max-width: 1100px;
 }
 
-.panal_Gallery{
-  width: 100%;
-  height: 200px;
-  background-position: center;
-  background-size: cover;
+.model .modal-dialog .gallery_mr {
+  max-width: 100%;
 }
 
-.gallery_mr{
-  display: block;
-  margin: auto;
+.model .modal-dialog .modal-content {
+  background-color: #fff;
+  border-radius: 10px;
 }
 
+.model .modal-dialog .modal-body {
+  text-align: center;
+}
+
+.prev, .next {
+  cursor: pointer;
+  margin: 0 20px;
+}
+
+.whatsapp-btn {
+  background-color: #25d366;
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 20px;
+  display: inline;
+  -webkit-box-shadow: inset 2px 2px 3px 3px #ffffff4f;
+          box-shadow: inset 2px 2px 3px 3px #ffffff4f;
+}
+
+.whatsapp-btn:hover {
+  color: #fff;
+}
 /*# sourceMappingURL=style.css.map */

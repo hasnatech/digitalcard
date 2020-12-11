@@ -78,7 +78,7 @@ body {
 }
 
 html {
-	font-family: sans-serif;
+	font-family: Poppins, sans-serif;
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
 	-webkit-tap-highlight-color: transparent;
@@ -189,7 +189,7 @@ html {
 }
 
 .img-bg {
-	background-color: #21252961;
+	//background-color: #21252961;
 	padding: 3px 25px;
 }
 
@@ -556,5 +556,20 @@ label.error {
 
 	}
 }
+.form-control:disabled, .form-control[readonly]{
+	opacity: 0.5;
+}
+
+.rounded-button{
+    background-color: #a77a19;
+    color: #fff;
+    padding: 5px 25px;
+    border-radius: 20px;
+    font-weight: normal;
+    margin: 0 10px;
+    box-shadow: 3px 2px 3px 1px #00000030;
+}
+
 
 @import "business";
+

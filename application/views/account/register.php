@@ -30,7 +30,7 @@
                                 </div> -->
                                 <div class="mb-3"></div>
                                 <div class="p-2">
-                                    <div class="error">
+                                    <div class="error_msg">
                                         <?php echo $error; ?>
                                     </div>
                                     <form id="regForm" name="registration" class="form-horizontal" action="<?php echo base_url('a/register'); ?>" method="POST">

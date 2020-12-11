@@ -7,10 +7,11 @@
                         <div class="card overflow-hidden">
                             <div class="bg-soft-primary">
                                 <div class="row">
-                                    <div class="col-7">
+                                    <div class="col-12">
                                         <div class="text-primary p-4">
                                             <h5 class="text-primary">Welcome Back !</h5>
                                             <p>Sign in to continue.</p>
+                                           
                                         </div>
                                     </div>
                                     <div class="col-5 align-self-end">
@@ -19,7 +20,7 @@
                                 </div>
                             </div>
                             <div class="card-body pt-0">
-                                <div>
+                                <!-- <div>
                                     <a href="index.html">
                                         <div class="avatar-md profile-user-wid mb-4">
                                             <span class="avatar-title rounded-circle bg-light">
@@ -27,13 +28,15 @@
                                             </span>
                                         </div>
                                     </a>
-                                </div>
+                                </div> -->
                                 <div class="p-2">
-                                    <form id="loginform" class="form-horizontal" action="<?php echo base_url('ws') ?>">
-
+                                    <form id="loginform" class="form-horizontal" method="POST" action="<?php echo base_url('a/login') ?>">
+                                    <div class="error_msg">
+                                                <?php echo $error; ?>
+                                            </div>
                                         <div class="form-group">
-                                            <label for="mobile">Mobile</label>
-                                            <input type="tel" class="form-control" name="mobile" placeholder="Enter Mobile Number">
+                                            <label for="mobile">Email</label>
+                                            <input type="tel" class="form-control" name="email" placeholder="Enter email Number">
                                         </div>
 
                                         <div class="form-group">
@@ -51,7 +54,7 @@
                                         </div>
 
                                         <div class="mt-4 text-center">
-                                            <a href="<?php echo base_url('a/forget')?>" class="text-muted"><i class="mdi mdi-lock mr-1"></i> Forgot your password?</a>
+                                            <a href="<?php echo base_url('a/forget') ?>" class="text-muted"><i class="mdi mdi-lock mr-1"></i> Forgot your password?</a>
                                         </div>
                                     </form>
                                 </div>
@@ -61,7 +64,7 @@
                         <div class="mt-5 text-center">
 
                             <div>
-                                <p>Don't have an account ? <a href="<?php echo base_url('a/register')?>" class="font-weight-medium text-primary"> Signup now </a> </p>
+                                <p>Don't have an account ? <a href="<?php echo base_url('a/register') ?>" class="font-weight-medium text-primary"> Signup now </a> </p>
                                 <p>© 2020 copyright. Crafted by Hasna technology</p>
                             </div>
                         </div>

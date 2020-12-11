@@ -4,21 +4,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class A extends MY_Controller
 {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+	public function __construct()
+    {
+        parent::__construct();
+        $this->data['page_title'] = 'Dashboard';
+        $this->load->model('Model_a');
+	}
+	
+
 	public function index()
 	{
 		$this->render('welcome_message');
@@ -26,18 +19,70 @@ class A extends MY_Controller
 
 	public function login()
 	{
-		$this->render('account/login');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email',
+		array(
+			'required'      => 'You have not provided %s.',
+			'is_unique'     => 'This %s already exists.'
+		));
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]');
+		
+		if ($this->form_validation->run() == TRUE) {
+			$email = $this->input->post('email');
+			$password = $this->input->post('password');
+			$user = $this->Model_a->get_user($email, $password);
+
+			if(count($user) == 0){
+				$this->data = array(
+					'error' => 'The email or password is incorrect'
+				);
+				$this->render('account/login', $this->data);
+			} else{
+				$login = $user[0];
+				$logged_in_sess = array(
+					'id' => $login->id,
+					'companyname'  => $login->companyname,
+					'email'     => $login->email,
+					'logged_in' => TRUE,
+					'role'      =>'user'
+				);
+				$this->session->set_userdata($logged_in_sess);
+				redirect('WS/index'); 	
+			}
+			//$id = $this->Model_a->insert($this->input->post());
+			//$this->result = $this->Model_a->get($id);
+			//redirect('ws/index'); 
+
+		} else {
+			$this->data = array(
+				'error' => validation_errors()
+			);
+			$this->render('account/login', $this->data);
+		}
 	}
 
 	public function register()
 	{
 		$this->form_validation->set_rules('companyname', 'Company Name', 'required');
-		$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|min_length[10]|is_unique[register.mobile]');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[register.email]');
+		$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|min_length[10]|is_unique[users.mobile]',
+		array(
+			'required'      => 'You have not provided %s.',
+			'is_unique'     => 'This %s Number already exists.'
+		));
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]',
+		array(
+			'required'      => 'You have not provided %s.',
+			'is_unique'     => 'This %s already exists.'
+		));
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]');
 		
 		if ($this->form_validation->run() == TRUE) {
-			echo "validated";
+
+			$id = $this->Model_a->insert($this->input->post());
+			$this->result = $this->Model_a->get($id);
+
+			//$this->render('ws/index', $this->data, $type = "dashboard");
+			redirect('WS/index'); 
+
 		} else {
 			$this->data = array(
 				'error' => validation_errors()
@@ -56,5 +101,11 @@ class A extends MY_Controller
 	{
 
 		
+	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect('a/login', 'refresh');
 	}
 }

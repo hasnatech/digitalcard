@@ -24,7 +24,17 @@
     <script src="<?php echo base_url('assets/js/custom.select.plugin.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery.conformy.plugin.js') ?>"></script>
     <Script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
+     <!-- include summernote css/js -->
+     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+    <script src="<?php echo base_url('assets/js/angular.min.js'); ?>"></script>
+
+
     <script src="<?php echo base_url('assets/js/main.js') ?>"></script>
+
+    
     <!--// Get Full Year Copyright //-->
 
 </head>
@@ -39,4 +49,4 @@
         </div>
 
     <?php } ?> -->
-    <div class="wrapper">
+    <!-- <div class="wrapper"> -->

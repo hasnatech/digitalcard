@@ -12,57 +12,97 @@ class WS extends Admin_Controller
 
     public function index()
     {
-
-        $this->render('ws/index', $this->data, $type = "dashboard");
+        $user_id = $this->session->userdata('id');
+        $this->data = $this->Model_ws->get_business_user_id($user_id);
+        //$this->data['page_title'] = 'Dashboard';
+        $this->render('WS/index', $this->data, $type = "dashboard");
     }
 
     public function new()
     {
-        $this->render('ws/form', $this->data, $type = "dashboard");
+        $this->data = $this->Model_ws->new_object();
+        $this->data->category = $this->Model_ws->get_category();
+        $this->render('WS/form', $this->data, $type = "dashboard");
     }
 
-    public function edit()
+    public function edit($id)
     {
         //echo "Edit Page";
-        $this->render('ws/form', $this->data, $type = "dashboard");
+        $user_id = $this->session->userdata('id');
+        $this->data = $this->Model_ws->get_business_user($id, $user_id);
+        $this->data[0]->product = $this->Model_ws->get_product_by_businessId($id);
+        $this->data[0]->gallery = $this->Model_ws->get_gallery($id);
+        $this->data[0]->youtube_list = $this->Model_ws->get_youtube($id);
+        $this->data[0]->category = $this->Model_ws->get_category();
+
+        if ($this->data != null && $this->data[0]->user_id == $user_id) {
+            $this->data = $this->data[0];
+            $this->render('WS/form', $this->data, $type = "dashboard");
+        } else {
+            $this->output->set_status_header('404');
+            $this->load->view('errors/error_404.html');
+        }
     }
 
     public function company_save()
     {
 
-        //print_r($this->input->post('company_save'));
+        $id = $this->input->post('id');
 
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('company', 'Company Name', 'required');
-        $this->form_validation->set_rules(
-            'url',
-            'URL',
-            'trim|required|is_unique[business.url]',
-            array(
-                'required'      => 'You have not provided %s.',
-                'is_unique'     => 'This %s already exists.'
-            )
-        );
-        $this->form_validation->set_rules(
-            'email',
-            'Email',
-            'trim|required|valid_email|is_unique[business.email]',
-            array(
-                'required'      => 'You have not provided %s.',
-                'is_unique'     => 'This %s already exists.'
-            )
-        );
+        if ($id == "") {
+            $this->form_validation->set_rules(
+                'url',
+                'URL',
+                'trim|required|is_unique[business.url]',
+                array(
+                    'required'      => 'You have not provided %s.',
+                    'is_unique'     => 'This %s already exists.'
+                )
+            );
+            $this->form_validation->set_rules(
+                'email',
+                'Email',
+                'trim|required|valid_email|is_unique[business.email]',
+                array(
+                    'required'      => 'You have not provided %s.',
+                    'is_unique'     => 'This %s already exists.'
+                )
+            );
+        } else {
+            $this->form_validation->set_rules(
+                'email',
+                'Email',
+                'trim|required|valid_email',
+                array(
+                    'required'      => 'You have not provided %s.',
+                )
+            );
+        }
         $this->form_validation->set_rules('contact_number', 'Contact Number', 'trim|required|min_length[10]');
         $this->form_validation->set_rules('whatsapp_number', 'Whatsapp Number', 'trim|required|min_length[10]');
         $this->form_validation->set_rules('address1', 'Address', 'trim|required');
 
         if ($this->form_validation->run() == TRUE) {
-            //$id = $this->Model_ws->insert($this->input->post());
-            $id = 1;
+            if ($id == "") {
+                $id = $this->Model_ws->insert($this->input->post());
+            }
+            else {
+                $this->Model_ws->update($id, $this->input->post());
+            }
+            //$id = 1;
+
+            $this->result = $this->Model_ws->get_business($id);
+            $this->result[0]->product = $this->Model_ws->get_product_by_businessId($id);
+            $this->result[0]->gallery = $this->Model_ws->get_gallery($id);
+            $this->result[0]->youtube_list = $this->Model_ws->get_youtube($id);
+
             $this->data = array(
                 'status' => 'success',
                 'data' => array(
-                    'id' => $id
+                    'id' => $id,
+                    'result' =>  $this->result
                 )
             );
         } else {
@@ -71,13 +111,13 @@ class WS extends Admin_Controller
                 'error' => validation_errors()
             );
         }
-        $id = 1;
+        /*$id = 1;
         $this->data = array(
             'status' => 'success',
             'data' => array(
                 'id' => $id
             )
-        );
+        );*/
         echo json_encode($this->data);
     }
 
@@ -152,7 +192,7 @@ class WS extends Admin_Controller
         }
 
         echo json_encode($this->data);
-    }
+    } 
 
     public function bank()
     {
@@ -166,6 +206,7 @@ class WS extends Admin_Controller
         $this->load->library('upload', $config);
 
         $data = $this->input->post();
+        //print_r($_FILES);
         if ($this->upload->do_upload('googlepay_qr')) {
             $googlepay_qr = $this->upload->data();
             $data['googlepay_qr'] = $googlepay_qr['file_name'];
@@ -174,7 +215,6 @@ class WS extends Admin_Controller
         }
 
         if ($this->upload->do_upload('paytm_qr')) {
-
             $paytm_qr = $this->upload->data();
             $data['paytm_qr'] = $paytm_qr['file_name'];
         }
@@ -201,6 +241,8 @@ class WS extends Admin_Controller
                 'data' => $data
             )
         );
+
+
         echo json_encode($this->data);
     }
 
@@ -258,17 +300,154 @@ class WS extends Admin_Controller
         echo json_encode($this->data);
     }
 
+    public function logo()
+    {
+        $config['upload_path'] = "./upload";
+        $config['allowed_types'] = 'gif|jpg|png';
+        // $config['overwrite'] = TRUE;
+        $config['max_size'] = "2048000";
+        $config['max_height'] = "1000";
+        $config['max_width'] = "2000";
 
-    public function getData($id){
+        $this->load->library('upload', $config);
+
+        // print_r($_FILES['image']);
+
+        if ($this->upload->do_upload('image')) {
+            $image_data = $this->upload->data();
+            $id = $this->input->post('id');
+            $data = array(
+                'logo' => $image_data['file_name']
+            );
+            $this->Model_ws->update($id, $data);
+
+            $this->data = array(
+                'status' => 'success',
+                'data' => $image_data['file_name']
+            );
+        } else {
+            $this->data = array(
+                'status' => 'failed',
+                'error' =>  $this->upload->display_errors()
+            );
+        }
+
+        echo json_encode($this->data);
+    }
+
+    public function background()
+    {
+        $config['upload_path'] = "./upload";
+        $config['allowed_types'] = 'gif|jpg|png';
+        // $config['overwrite'] = TRUE;
+        $config['max_size'] = "2048000";
+        $config['max_height'] = "1000";
+        $config['max_width'] = "2000";
+
+        $this->load->library('upload', $config);
+
+        // print_r($_FILES['image']);
+
+        if ($this->upload->do_upload('image')) {
+            $image_data = $this->upload->data();
+            $id = $this->input->post('id');
+            $data = array(
+                'background' => $image_data['file_name']
+            );
+            $this->Model_ws->update($id, $data);
+
+            $this->data = array(
+                'status' => 'success',
+                'data' => $image_data['file_name']
+            );
+        } else {
+            $this->data = array(
+                'status' => 'failed',
+                'error' =>  $this->upload->display_errors()
+            );
+        }
+
+        echo json_encode($this->data);
+    }
+
+    public function backgroundData()
+    {
+        //print_r($this->input->post());
+        if ($this->input->post('id')) {
+            $id = $this->input->post('id');
+            $data = array(
+                'background' => $this->input->post('background')
+            );
+            $this->Model_ws->update($id, $data);
+
+            $this->data = array(
+                'status' => 'success',
+                'data' => $this->input->post('background')
+            );
+        } else {
+            $this->data = array(
+                'status' => 'failed',
+                'error' =>  'The is background not set'
+            );
+        }
+
+        echo json_encode($this->data);
+    }
+
+    public function color()
+    {
+        if ($this->input->post('id') && $this->input->post('color')) {
+            $id = $this->input->post('id');
+            $data = array(
+                'color' => $this->input->post('color')
+            );
+            $this->Model_ws->update($id, $data);
+
+            $this->data = array(
+                'status' => 'success',
+                'data' => $this->input->post('color')
+            );
+        } else {
+            $this->data = array(
+                'status' => 'failed',
+                'error' =>  'The is color not set'
+            );
+        }
+
+        echo json_encode($this->data);
+    }
+
+    public function getData($id)
+    {
         $data = $this->Model_ws->get_business($id);
-        $data->product = $this->Model_ws->get_product_by_businessId($id);
-        $data->gallery = $this->Model_ws->get_gallery($id);
-        $data->youtube_list = $this->Model_ws->get_youtube($id);
+        $data[0]->product = $this->Model_ws->get_product_by_businessId($id);
+        $data[0]->gallery = $this->Model_ws->get_gallery($id);
+        $data[0]->youtube_list = $this->Model_ws->get_youtube($id);
+        $data[0]->category = $this->Model_ws->get_category();
 
         $this->data = array(
             'status' => 'success',
             'data' =>   $data
         );
-        echo json_encode( $this->data );
+        echo json_encode($this->data);
+    }
+
+    public function delete_product($id)
+    {
+        $this->data = array(
+            'status' => 'success',
+            'data' =>    $this->Model_ws->delete_product($id)
+        );
+        echo json_encode($this->data);
+    }
+
+
+    public function delete_gallery($id)
+    {
+        $this->data = array(
+            'status' => 'success',
+            'data' =>    $this->Model_ws->delete_gallery($id)
+        );
+        echo json_encode($this->data);
     }
 }
