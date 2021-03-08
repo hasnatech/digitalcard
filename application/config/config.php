@@ -28,7 +28,7 @@ if(ENVIRONMENT == "development"){
     $config['base_url'] = 'http://localhost/imitationjewellry/';    
 }else{
     //$config['base_url'] = 'http://ijts.com/'; 
-    $config['base_url'] = 'http://imitationjewelryindia.com/';
+    $config['base_url'] = 'https://imitationjewelryindia.com/';
 }
 
 $config['powered'] = 'Powered by <a href="" target="_blank">Hasna Technology</a>.';
