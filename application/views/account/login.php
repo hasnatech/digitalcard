@@ -36,7 +36,7 @@
                                             </div>
                                         <div class="form-group">
                                             <label for="mobile">Email</label>
-                                            <input type="tel" class="form-control" name="email" placeholder="Enter email Number">
+                                            <input type="email" class="form-control" name="email" placeholder="Enter email Number">
                                         </div>
 
                                         <div class="form-group">

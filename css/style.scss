@@ -67,7 +67,7 @@ body {
 	--danger: #f46a6a;
 	--light: #eff2f7;
 	--dark: #343a40;
-	--pink: #e83e8c;
+	--pink: #cf6983;
 	--breakpoint-xs: 0;
 	--breakpoint-sm: 576px;
 	--breakpoint-md: 768px;
@@ -144,7 +144,7 @@ html {
 }
 
 .main-footer {
-	margin-top: 1rem;
+	//margin-top: 1rem;
 	padding: 1rem;
 	background-color: #e9ecef;
 }
@@ -182,15 +182,19 @@ html {
 }
 
 .home-nav {
-	background-color: #ECB235;
+	//background-color: #ECB235;
+	background-color: #FFF;
 	font-size: 15px;
 	font-weight: bold;
 	text-transform: capitalize;
+	box-shadow: 0 0 8px 5px #23232391;
 }
 
 .img-bg {
 	//background-color: #21252961;
-	padding: 3px 25px;
+	//padding: 3px 25px;
+	padding-right: 25px;
+	width: 96px;
 }
 
 .a-text:hover {
@@ -206,13 +210,13 @@ html {
 
 
 .img-boder {
-	transition: 0.5s all ease-in-out;
+	transition: 2s all ease-in-out;
 	cursor: pointer;
 	border-radius: 7px;
 }
 
 .img-boder:hover {
-	transform: scale(1.5);
+	transform: scale(1.2);
 }
 
 .margin-top {
@@ -329,6 +333,12 @@ html {
 	background-color: #fff;
 }
 
+.text-white {
+	h2 {
+		color: #cf6983;
+	}
+}
+
 .nav-border {
 	padding: 0px 20px;
 	text-align: left;
@@ -395,17 +405,21 @@ html {
 }
 
 .text-color:hover {
-	color: #ECB235;
+	color: #dc3545;
 	text-decoration: none;
 
 }
 
+.prod-card {
+	background-color: #f7f7f7;
+}
 
 .images {
 	position: relative;
 	overflow: hidden;
 	width: 280px;
 	height: 343px;
+	margin: 0 auto;
 
 	.card-img-top {
 		position: absolute;
@@ -432,7 +446,7 @@ html {
 
 .footer_bg {
 	background-color: #050505;
-	height: 600px;
+	/*height: 600px;*/
 }
 
 .footer_panal {
@@ -457,8 +471,14 @@ html {
 	font-weight: normal;
 }
 
-.footer_text:hover {
-	color: #ECB235;
+.footer_text,
+.nav-link {
+	transition: color 0.5s ease;
+}
+
+.footer_text:hover,
+.nav-link:hover {
+	color: #dc3545;
 }
 
 .footer-transition {
@@ -482,7 +502,7 @@ html {
 }
 
 .padding-panal {
-	padding: 2rem;
+	padding: 1rem;
 	color: #ffffff;
 	font-size: 15px;
 	font-weight: 500;
@@ -556,20 +576,33 @@ label.error {
 
 	}
 }
-.form-control:disabled, .form-control[readonly]{
+
+.form-control:disabled,
+.form-control[readonly] {
 	opacity: 0.5;
 }
 
-.rounded-button{
-    background-color: #a77a19;
-    color: #fff;
-    padding: 5px 25px;
-    border-radius: 20px;
-    font-weight: normal;
-    margin: 0 10px;
-    box-shadow: 3px 2px 3px 1px #00000030;
+.rounded-button {
+	background-color: var(--pink);
+	color: #000;
+	padding: 5px 25px;
+	border-radius: 20px;
+	font-weight: normal;
+	margin: 0 10px;
+	box-shadow: 3px 2px 3px 1px #00000030;
+	transition: background-color 0.5s ease;
 }
 
+.space-100 {
+	height: 100px;
+}
+
+.space-50 {
+	height: 50px;
+}
+
+.medium-font {
+	font-size: 14px;
+}
 
 @import "business";
-

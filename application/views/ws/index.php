@@ -28,7 +28,7 @@
                                         <th scope="row"><?php echo $this->data[$i]->id ?></th>
                                         <td><?php echo $this->data[$i]->company ?></td>
                                         <td><?php echo $this->data[$i]->email ?></td>
-                                        <td><a href="<?= base_url("business/c/" . $this->data[$i]->url . '/' . $this->data[$i]->id) ?>"><?= $this->data[$i]->url ?></a></td>
+                                        <td><a href="<?= base_url($this->data[$i]->url); ?>"><?= $this->data[$i]->url ?></a></td>
                                         <!-- <td>Table cell</td> -->
                                         <td><?php echo $this->data[$i]->id ?></td>
                                         <td>

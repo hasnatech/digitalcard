@@ -35,9 +35,9 @@ class Model_ws extends CI_Model
         return $this->db->get_where('business', array('id' => $id))->result();
     }
 
-    public function get_business_company($id, $company)
+    public function get_business_company($company)
     {
-        $query = "SELECT * from business WHERE id=$id and REPLACE(Lower('$company'), ' ', '')='$company'";
+        $query = "SELECT * from business WHERE REPLACE(Lower('$company'), ' ', '')='$company'";
         
         return $this->db->query($query)->result();
     }

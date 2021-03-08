@@ -32,12 +32,12 @@
             match[2] :
             null;
     }
-    //var base_url = "http://localhost/digitalcard/";
-    var base_url = "http://imitationjewelryindia.com/";
+    var base_url = "http://localhost/imitationjewellry/";
+    //var base_url = "https://imitationjewelryindia.com/";
     $().ready(function() {
         $.ajax({
             type: "GET",
-            url: base_url + 'WS/getData/' + business_id,
+            url: base_url + 'B/getData/' + business_id,
             success: function(d) {
                 var result = JSON.parse(d);
                 if (result.status === 'success') {

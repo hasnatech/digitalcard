@@ -2,7 +2,7 @@ var app = angular.module('myApp', []);
 var product_max_count = 5;
 var gallery_max_count = 10;
 //var base_url = "http://localhost/digitalcard/";
-var base_url = "http://imitationjewelryindia.com/";
+var base_url = "https://imitationjewelryindia.com/";
 app.controller('myCtrl', function ($scope, $http) {
 
 	$scope.selectedProduct = [];
