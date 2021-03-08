@@ -23,7 +23,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/imitationjewellry';
+
+if(ENVIRONMENT == "development"){
+    $config['base_url'] = 'http://localhost/imitationjewellry/';    
+}else{
+    $config['base_url'] = 'http://ijts.com/'; 
+}
+
 $config['powered'] = 'Powered by <a href="" target="_blank">Hasna Technology</a>.';
 $config['version'] = '0.0.1';
 $config['version_number'] = '1';

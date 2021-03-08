@@ -73,12 +73,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+if(ENVIRONMENT == "development"){
+	$hostname = "localhost";
+	$username = "root";
+	$password = "";
+	$database = "ecard";
+} else {
+	$hostname = "localhost";
+	$username = "nicetycs_admin";
+	$password = "Dec2020@";
+	$database = "nicetycs_jewellery";
+}
+
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'ecard',
+	'hostname' => $hostname,
+	'username' => $username,
+	'password' => $password,
+	'database' => $database,
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
