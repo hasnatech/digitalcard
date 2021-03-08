@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class B extends MY_Controller
+class B extends My_Controller
 {
 
 	public function __construct()
