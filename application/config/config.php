@@ -27,7 +27,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 if(ENVIRONMENT == "development"){
     $config['base_url'] = 'http://localhost/imitationjewellry/';    
 }else{
-    $config['base_url'] = 'https://store.ijts.in/'; 
+    $config['base_url'] = 'http://store.ijts.in/'; 
     //$config['base_url'] = 'https://imitationjewelryindia.com/';
 }
 
