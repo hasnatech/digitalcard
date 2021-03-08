@@ -1,6 +1,6 @@
 <?php
 
-class My_Controller extends CI_Controller
+class MY_Controller extends CI_Controller
 {
     public function __construct()
     {
@@ -23,7 +23,7 @@ class My_Controller extends CI_Controller
     }
 }
 
-class Admin_Controller extends My_Controller
+class Admin_Controller extends MY_Controller
 {
 
     var $permission = array();
