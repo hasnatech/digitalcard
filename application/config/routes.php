@@ -54,4 +54,5 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['WS']="WS/index";
+$route['WS/index']="WS/index";
 $route['(:any)']="B/c/$1";
