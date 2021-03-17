@@ -25,7 +25,7 @@ class B extends MY_Controller
             //print_r( $this->data);
             //echo $this->db->last_query();
             if(count($this->data) > 0){
-                $this->render('WS/web',  $this->data);
+                $this->render('ws/web',  $this->data);
             }else{
                 $this->output->set_status_header('404');
                 $this->load->view('errors/error_404.html');

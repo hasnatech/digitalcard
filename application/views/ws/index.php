@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="float-right mb-3">
-                        <a href="<?php echo base_url('WS/new'); ?>" class="btn btn-primary">New Site</a>
+                        <a href="<?php echo base_url('ws/new'); ?>" class="btn btn-primary">New Site</a>
                     </div>
                     <h4 class="card-title">Websites</h4>
 
@@ -32,7 +32,7 @@
                                         <!-- <td>Table cell</td> -->
                                         <td><?php echo $this->data[$i]->id ?></td>
                                         <td>
-                                            <a href="<?php echo base_url('WS/edit/'. $this->data[$i]->id); ?>" class="btn btn-info">Edit</a>
+                                            <a href="<?php echo base_url('ws/edit/'. $this->data[$i]->id); ?>" class="btn btn-info">Edit</a>
                                             <!-- <button class="btn btn-warning">Pay</button> -->
                                         </td>
                                     </tr>

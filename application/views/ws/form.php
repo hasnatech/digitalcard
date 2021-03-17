@@ -24,7 +24,7 @@
 					<!-- Tab panes -->
 					<div class="tab-content p-3 text-muted">
 						<div class="tab-pane active" id="company-panel" role="tabpanel">
-							<form name='company_save' action="<?php echo base_url('WS/company_save'); ?>" method="POST">
+							<form name='company_save' action="<?php echo base_url('ws/company_save'); ?>" method="POST">
 								<input type="hidden" name="id" class="business_id" value="<?= $this->data->id ?>">
 								<div class="row">
 									<div class="col-lg-4">
@@ -161,7 +161,7 @@
 						</div>
 
 						<div class="tab-pane" id="about" role="tabpanel">
-							<form name='about_form' action="<?php echo base_url('WS/about'); ?>" method="POST">
+							<form name='about_form' action="<?php echo base_url('ws/about'); ?>" method="POST">
 								<input type="hidden" name="id" class="business_id">
 								<div class="row">
 									<div class="col-lg-4">
@@ -188,7 +188,7 @@
 						</div>
 
 						<div class="tab-pane" id="social" role="tabpanel">
-							<form name='social_form' action="<?php echo base_url('WS/social'); ?>" method="POST">
+							<form name='social_form' action="<?php echo base_url('ws/social'); ?>" method="POST">
 								<input type="hidden" name="id" value="<?= $this->data->id ?>" class="business_id">
 								<div class="row">
 									<div class="col-lg-4">
@@ -276,7 +276,7 @@
 						</div>
 
 						<div class="tab-pane" id="services" role="tabpanel">
-							<form name='product_form' action="<?php echo base_url('WS/product'); ?>" method="POST" enctype="multipart/form-data">
+							<form name='product_form' action="<?php echo base_url('ws/product'); ?>" method="POST" enctype="multipart/form-data">
 								<input type="hidden" id="product_id" name="product_id">
 								<div class="row">
 									<div class="col-lg-4">
@@ -350,7 +350,7 @@
 						</div>
 
 						<div class="tab-pane" id="bank" role="tabpanel">
-							<form name='bank_form' action="<?php echo base_url('WS/bank'); ?>" method="POST" enctype="multipart/form-data">
+							<form name='bank_form' action="<?php echo base_url('ws/bank'); ?>" method="POST" enctype="multipart/form-data">
 								<input type="hidden" name="id" class="business_id">
 								<div class="card card_border">
 									<h3 class="card-header account_border">Account Details</h3>
@@ -487,7 +487,7 @@
 						</div>
 
 						<div class="tab-pane" id="gallery" role="tabpanel">
-							<form name='gallery_form' action="<?php echo base_url('WS/gallery'); ?>" method="POST" enctype="multipart/form-data">
+							<form name='gallery_form' action="<?php echo base_url('ws/gallery'); ?>" method="POST" enctype="multipart/form-data">
 								<div class="row mt-3">
 									<div class="col-lg-6">
 										<label for="gallery_image">Choose Gallery images ( Upload Upto 10 Images)</label>
@@ -522,7 +522,7 @@
 								<div class="settings">
 									<div class="section">
 										<h2>Logo</h2>
-										<form name='logo_form' action="<?php echo base_url('WS/logo'); ?>" method="POST" enctype="multipart/form-data">
+										<form name='logo_form' action="<?php echo base_url('ws/logo'); ?>" method="POST" enctype="multipart/form-data">
 											<label for="logo">Upload Logo</label>
 											<div class="input-group">
 												<div class="custom-file">
@@ -558,7 +558,7 @@
 										</div>
 										<br><br> -->
 
-										<form name='background_form' action="<?php echo base_url('WS/background'); ?>" method="POST" enctype="multipart/form-data">
+										<form name='background_form' action="<?php echo base_url('ws/background'); ?>" method="POST" enctype="multipart/form-data">
 											<label for="background">Upload background</label>
 											<div class="input-group">
 												<div class="custom-file">
@@ -574,13 +574,13 @@
 
 									</div>
 									<a href="#" class="back_btn btn btn-warning" data-value="5">Back</a>
-									<a href="<?php echo base_url('WS') ?>" class="btn btn-primary">Save</a>
+									<a href="<?php echo base_url('ws') ?>" class="btn btn-primary">Save</a>
 								</div>
 
 								<div class="page flex-1 ">
 									<div class="container-custom mt-5">
 										<?php
-										$this->load->view("WS/website");
+										$this->load->view("ws/website");
 										?>
 									</div>
 								</div>

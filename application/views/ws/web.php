@@ -1,7 +1,7 @@
 <div class="" id="headline" ng-app="myApp" ng-controller="myCtrl">
     <div class="">
         <?php
-        $this->load->view("WS/website");
+        $this->load->view("ws/website");
         ?>
     </div>
 </div>

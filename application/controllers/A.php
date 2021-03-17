@@ -46,7 +46,7 @@ class A extends MY_Controller
 					'role'      =>'user'
 				);
 				$this->session->set_userdata($logged_in_sess);
-				redirect('WS/index'); 	
+				redirect('ws/index'); 	
 			}
 			//$id = $this->Model_a->insert($this->input->post());
 			//$this->result = $this->Model_a->get($id);
@@ -81,7 +81,7 @@ class A extends MY_Controller
 			$this->result = $this->Model_a->get($id);
 
 			//$this->render('ws/index', $this->data, $type = "dashboard");
-			redirect('WS/index'); 
+			redirect('ws/index'); 
 
 		} else {
 			$this->data = array(

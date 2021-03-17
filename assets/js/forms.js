@@ -30,7 +30,7 @@ app.controller('myCtrl', function ($scope, $http) {
 
 		$http({
 				method: 'DELETE',
-				url: base_url + 'WS/delete_product/' + $scope.business.product[index].id,
+				url: base_url + 'ws/delete_product/' + $scope.business.product[index].id,
 				data: {
 					id: $scope.business.product[index].id
 				},
@@ -52,7 +52,7 @@ app.controller('myCtrl', function ($scope, $http) {
 
 		$http({
 				method: 'DELETE',
-				url:  base_url + 'WS/delete_gallery/' + $scope.business.gallery[index].id,
+				url:  base_url + 'ws/delete_gallery/' + $scope.business.gallery[index].id,
 				data: {
 					id: $scope.business.gallery[index].id
 				},
@@ -219,7 +219,7 @@ $(document).ready(function () {
 			$(href).show();*/
 			$.ajax({
 				type: "GET",
-				url: base_url + '/WS/getData/' + business_id,
+				url: base_url + '/ws/getData/' + business_id,
 				success: function (d) {
 					var result = JSON.parse(d);
 					if (result.status === 'success') {
@@ -780,7 +780,7 @@ $(document).ready(function () {
 		//var url = form.attr('action');
 		$.ajax({
 			type: "POST",
-			url: base_url + "WS/color",
+			url: base_url + "ws/color",
 			data: {
 				id: business_id,
 				color: color
@@ -806,7 +806,7 @@ $(document).ready(function () {
 	$("#remove_bg").click(function () {
 		$.ajax({
 			type: "POST",
-			url: base_url + "WS/backgroundData",
+			url: base_url + "ws/backgroundData",
 			data: {
 				id: business_id,
 				background: ""
@@ -835,7 +835,7 @@ $(document).ready(function () {
 
 		$.ajax({
 			type: "POST",
-			url: base_url + "WS/backgroundData",
+			url: base_url + "ws/backgroundData",
 			data: {
 				id: business_id,
 				background: image

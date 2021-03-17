@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class WS extends Admin_Controller
+class Ws extends Admin_Controller
 {
     public function __construct()
     {
@@ -15,14 +15,14 @@ class WS extends Admin_Controller
         $user_id = $this->session->userdata('id');
         $this->data = $this->Model_ws->get_business_user_id($user_id);
         //$this->data['page_title'] = 'Dashboard';
-        $this->render('WS/index', $this->data, $type = "dashboard");
+        $this->render('ws/index', $this->data, $type = "dashboard");
     }
 
     public function new()
     {
         $this->data = $this->Model_ws->new_object();
         $this->data->category = $this->Model_ws->get_category();
-        $this->render('WS/form', $this->data, $type = "dashboard");
+        $this->render('ws/form', $this->data, $type = "dashboard");
     }
 
     public function edit($id)
@@ -37,7 +37,7 @@ class WS extends Admin_Controller
 
         if ($this->data != null && $this->data[0]->user_id == $user_id) {
             $this->data = $this->data[0];
-            $this->render('WS/form', $this->data, $type = "dashboard");
+            $this->render('ws/form', $this->data, $type = "dashboard");
         } else {
             $this->output->set_status_header('404');
             $this->load->view('errors/error_404.html');
