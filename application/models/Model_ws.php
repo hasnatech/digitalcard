@@ -37,7 +37,7 @@ class Model_ws extends CI_Model
 
     public function get_business_company($company)
     {
-        $query = "SELECT * from business WHERE REPLACE(Lower('$company'), ' ', '')='$company'";
+        $query = "SELECT * from business WHERE REPLACE(Lower(url), ' ', '')='$company'";
         
         return $this->db->query($query)->result();
     }
