@@ -33,7 +33,8 @@
             null;
     }
     //var base_url = "http://localhost/imitationjewellry/";
-    var base_url = "https://store.ijts.in/";
+    //var base_url = "https://store.ijts.in/";
+    var base_url = "<?php echo base_url() ?>";
     //var base_url = "https://imitationjewelryindia.com/";
     $().ready(function() {
         $.ajax({
