@@ -1,5 +1,5 @@
 <div id="business_view" ng-controller="businessCtrl">
-	<div class="background" ng-style="{'background-image': 'url(/digitalcard/upload/' + business.background + ')', 'background-color' : business.color}"></div>
+	<div class="background" ng-style="{'background-image': 'url(/upload/' + business.background + ')', 'background-color' : business.color}"></div>
 	{{ business.color}}
 	<div class="wrapper">
 		<div class="space"></div>
