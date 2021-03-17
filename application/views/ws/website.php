@@ -19,7 +19,7 @@
 			<div>
 				<div class="business_name">
 					<h2>{{business.company}}</h2>
-				</div>
+				</div> 
 				<div class="address">
 					{{business.address1}}<br>
 					<span ng-if="business.address2">{{business.address2}}<br></span>
