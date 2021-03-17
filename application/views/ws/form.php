@@ -41,7 +41,7 @@
 										<div class="form-group"><label for="url">URL<span class="red">*</span></label>
 											<div class="input-group mb-2 mr-sm-3">
 												<div class="input-group-prepend">
-													<div class="input-group-text">https://imitationjewelryindia.com/b/a/</div>
+													<div class="input-group-text">https://store.ijts.in/</div>
 												</div>
 												<?php
 												if ($this->data->id != "") {
