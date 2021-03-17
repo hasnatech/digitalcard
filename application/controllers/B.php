@@ -11,11 +11,14 @@ class B extends MY_Controller
         $this->load->model('Model_ws');
     }
     
-    public function c($company, $id){
+
+
+    //public function c($company, $id){
+    public function c($company){
         //$company = $this->input->get('c');
         //$id =  $this->input->get('i');
         //print_r($id);
-        $id = $id[0];
+        //$id = $id[0];
         if(isset($company) == true){
 
             $this->data = $this->Model_ws->get_business_company($company);

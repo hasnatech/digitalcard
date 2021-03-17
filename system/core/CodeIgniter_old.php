@@ -401,10 +401,21 @@ if ( ! is_php('5.4'))
 	$e404 = FALSE;
 	$class = ucfirst($RTR->class);
 	$method = $RTR->method;
+	$direct = false;
 
 	if (empty($class) OR ! file_exists(APPPATH.'controllers/'.$RTR->directory.$class.'.php'))
 	{
-		$e404 = TRUE;
+		$params = array($RTR->directory.$class, array_slice($URI->rsegments, 1));
+		$RTR->directory.$class = 'b';
+		require_once(APPPATH.'controllers/'.$RTR->directory.$class.'.php');
+		$method = 'c';
+		$direct = true;
+		//$params = array($RTR->directory.$class);
+		//echo $RTR->directory.$class;
+		//echo $method;
+		//echo $params;
+		//print_r($params);
+		//$e404 = TRUE;
 	}
 	else
 	{
@@ -497,7 +508,12 @@ if ( ! is_php('5.4'))
 
 	if ($method !== '_remap')
 	{
-		$params = array_slice($URI->rsegments, 2);
+		//print_r($params);
+		if($direct == false){
+			//print_r($params);
+			$params = array_slice($URI->rsegments, 2);
+		}
+		
 	}
 
 /*
